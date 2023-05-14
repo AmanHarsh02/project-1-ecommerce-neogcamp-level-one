@@ -1,4 +1,4 @@
-export default function IndividualProduct() {
+export function IndividualProduct() {
   return (
     <>
       <h1>Individual Product Page</h1>
