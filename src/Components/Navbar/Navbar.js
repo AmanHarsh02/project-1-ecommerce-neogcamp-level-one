@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "../Navbar/Navbar.css";
 import { Icon } from "@iconify/react";
+import logo from "../../assets/logo.svg";
 
 export function Navbar() {
   return (
@@ -8,12 +9,7 @@ export function Navbar() {
       <div className="nav__main">
         <div className="item__container">
           <NavLink to="/" className="nav__link">
-            <Icon
-              icon="material-symbols:camera-outline-rounded"
-              color="#5348c7"
-              height={24}
-              style={{ alignSelf: "center" }}
-            />
+            <img src={logo} />
             <h2>SnapShop</h2>
           </NavLink>
         </div>
