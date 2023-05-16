@@ -59,14 +59,6 @@
   outline: none;
 }
 
-.login__container {
-  display: flex;
-}
-
-.btn__login {
-  display: none;
-}
-
 .btn__help {
   display: none;
 }
@@ -110,20 +102,6 @@
 @media screen and (min-width: 768px) {
   .nav__link p {
     display: inline-block;
-  }
-
-  .login__container .user__icon {
-    display: none;
-  }
-
-  .btn__login {
-    display: inline-block;
-    cursor: pointer;
-    color: white;
-    background-color: var(--primary-color);
-    border: none;
-    padding: 0.4rem 1.5rem;
-    border-radius: 0.2rem;
   }
 }
 

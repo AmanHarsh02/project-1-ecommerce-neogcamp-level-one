@@ -1,4 +1,4 @@
-import "../Carousal/Carousal.css";
+import "../Carousel/Carousel.css";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import banner_0 from "../../assets/home_banner_0.png";
@@ -6,7 +6,7 @@ import banner_1 from "../../assets/home_banner_1.png";
 import banner_2 from "../../assets/home_banner_2.png";
 import { useEffect, useState } from "react";
 
-export function Carousal() {
+export function Carousel() {
   const [image, setImage] = useState(0);
   const [banner, setBanner] = useState(banner_0);
 
@@ -28,8 +28,6 @@ export function Carousal() {
   useEffect(() => {
     getSourceImg();
   }, [image]);
-
-  console.log(image, banner);
 
   return (
     <div className="carousal__container">

@@ -24,19 +24,6 @@ export function Navbar() {
         </div>
 
         <div className="item__container">
-          <div className="login__container">
-            <div>
-              <Icon
-                icon="solar:user-circle-linear"
-                color="#282828"
-                height={24}
-                className="user__icon"
-              />
-            </div>
-
-            <button className="btn__login">Login</button>
-          </div>
-
           <NavLink to="/wishlist" className="nav__link">
             <div className="icon__with__badge">
               <Icon
@@ -59,6 +46,19 @@ export function Navbar() {
               <div className="count__badge">0</div>
             </div>
             <p>Cart</p>
+          </NavLink>
+
+          <NavLink to="/user-profile" className="nav__link">
+            <div>
+              <Icon
+                icon="solar:user-circle-linear"
+                color="#282828"
+                height={24}
+                className="user__icon"
+              />
+            </div>
+
+            <p>Profile</p>
           </NavLink>
         </div>
 

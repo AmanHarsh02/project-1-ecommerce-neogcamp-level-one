@@ -1,4 +1,5 @@
 export const initialState = {
+  user: {},
   products: [],
   cart: [],
   wishlist: [],
@@ -17,6 +18,8 @@ export const dataReducer = (state, action) => {
       return { ...state, products: action.payload };
     case "SET_CATEGORIES":
       return { ...state, categories: action.payload };
+    case "SET_USER_DATA":
+      return { ...state, user: action.payload };
     default:
       return { ...state };
   }

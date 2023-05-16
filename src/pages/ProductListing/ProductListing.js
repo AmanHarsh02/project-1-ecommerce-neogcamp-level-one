@@ -1,3 +1,5 @@
+import { useData } from "../../contexts/DataContext";
+
 export function ProductListing() {
   return (
     <>

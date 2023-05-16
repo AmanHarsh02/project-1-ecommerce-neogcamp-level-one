@@ -10,7 +10,7 @@ import { initialState, dataReducer } from "../reducers/DataReducer";
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-  const [state, dispatch] = useReducer(dataReducer, initialState);
+  const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
@@ -19,7 +19,7 @@ export function DataProvider({ children }) {
       const { categories } = await response.json();
 
       if (response.status === 200) {
-        dispatch({
+        dataDispatch({
           type: "SET_CATEGORIES",
           payload: categories,
         });
@@ -29,7 +29,7 @@ export function DataProvider({ children }) {
       const { products } = await productResponse.json();
 
       if (productResponse.status === 200) {
-        dispatch({
+        dataDispatch({
           type: "SET_PRODUCTS",
           payload: products,
         });
@@ -49,8 +49,10 @@ export function DataProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
-        products: state.products,
-        categories: state.categories,
+        products: dataState.products,
+        categories: dataState.categories,
+        user: dataState.user,
+        dataDispatch,
       }}
     >
       {children}
