@@ -14,7 +14,6 @@ import {
 import { Navbar, ProtectedRoute } from "./Components/index";
 
 function App() {
-  console.log(process.env.REACT_APP_JWT_SECRET, "ENV");
   return (
     <div className="App">
       <Navbar />
