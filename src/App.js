@@ -1,24 +1,58 @@
 import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Cart from "./pages/Cart";
-import Wishlist from "./pages/Wishlist";
-import ProductListing from "./pages/ProductListing";
-import IndivudualProduct from "./pages/IndidualProduct";
+import {
+  Home,
+  Cart,
+  Wishlist,
+  ProductListing,
+  IndividualProduct,
+  Login,
+  Signup,
+  UserProfile,
+} from "./pages/index";
+import { Navbar, ProtectedRoute } from "./Components/index";
 
 function App() {
   console.log(process.env.REACT_APP_JWT_SECRET, "ENV");
   return (
     <div className="App">
-      <h1>E-Commerce Project</h1>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/product/:productId" element={<IndivudualProduct />} />
+        <Route path="/product/:productId" element={<IndividualProduct />} />
+
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/user-profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>

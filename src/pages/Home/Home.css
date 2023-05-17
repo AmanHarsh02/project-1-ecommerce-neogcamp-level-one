@@ -1,0 +1,26 @@
+.home__container * {
+  color: var(--secondary-color);
+}
+
+.content__container {
+  width: 90%;
+  margin: auto;
+}
+
+.hero__section {
+  background-image: url("/src/assets/home_background_1.png");
+  background-size: cover;
+  border: 1px solid white;
+}
+
+.featured__section {
+  background: linear-gradient(to right, #d1fae5, rgba(188, 148, 255, 0.56));
+  height: 500px;
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
