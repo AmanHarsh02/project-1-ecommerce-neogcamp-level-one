@@ -17,9 +17,31 @@
   background: linear-gradient(to right, #d1fae5, rgba(188, 148, 255, 0.56));
   height: 500px;
   margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.brand__features__section {
+  margin-bottom: 3rem;
+}
+
+.trending__brands__heading__container {
+  text-align: center;
+}
+
+.trending__brands__heading__container p {
+  margin: 0.5rem auto;
+}
+
+.trending__brands__container {
+  background-color: #f0f0f0;
+  margin: 3rem 0rem;
 }
 
 @media screen and (min-width: 768px) {
+  .trending__brands__heading__container p {
+    margin: 0.5rem auto;
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 1024px) {

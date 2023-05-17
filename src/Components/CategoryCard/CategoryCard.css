@@ -1,7 +1,3 @@
-.categories__card__container * {
-  color: var(--secondary-color);
-}
-
 .categories__card__container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

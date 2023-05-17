@@ -9,7 +9,7 @@ export function Navbar() {
       <div className="nav__main">
         <div className="item__container">
           <NavLink to="/" className="nav__link">
-            <img src={logo} />
+            <img src={logo} alt="logo" />
             <h2>SnapShop</h2>
           </NavLink>
         </div>
@@ -52,7 +52,7 @@ export function Navbar() {
             <div>
               <Icon
                 icon="solar:user-circle-linear"
-                color="#282828"
+                color="#5348c7"
                 height={24}
                 className="user__icon"
               />

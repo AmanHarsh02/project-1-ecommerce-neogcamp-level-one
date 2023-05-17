@@ -6,31 +6,17 @@ export function Login() {
   const {
     authState: { email, password },
     authDispatch,
-    loggedIn,
-    setUserDetails,
+    loginValidation,
   } = useAuth();
 
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const userValidation = () => {
-    if (email.trim().length <= 0 && password.trim().length <= 0) {
-      return console.error("Email & Password cannot be empty");
-    } else if (email.trim().length <= 0) {
-      return console.error("Email cannot be empty");
-    } else if (password.trim().length <= 0) {
-      return console.error("Password cannot be empty");
-    }
-
-    const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
-
-    if (!regex.test(email)) {
-      return console.error("Invalid email, please enter a valid email address");
-    }
-
-    setUserDetails({ email: email, password: password });
-
-    setTimeout(() => navigate(location?.state?.from?.pathname), 1000);
+  const handleLogin = () => {
+    authDispatch({
+      type: "SET_LOCATION",
+      payload: location?.state?.from?.pathname,
+    });
+    loginValidation();
   };
 
   return (
@@ -69,7 +55,7 @@ export function Login() {
           Remember me
         </label>
 
-        <button onClick={userValidation}>Login</button>
+        <button onClick={handleLogin}>Login</button>
 
         <Link to="/signup">Create New Account ▶</Link>
       </div>

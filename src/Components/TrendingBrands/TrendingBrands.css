@@ -1,0 +1,31 @@
+.brands__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  overflow-x: scroll;
+  scrollbar-color: #5348c7 #333333;
+}
+
+.brands__container img {
+  width: 42%;
+}
+
+@media screen and (min-width: 768px) {
+  .brands__container {
+    justify-content: center;
+  }
+  .brands__container img {
+    width: 16%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .brands__container {
+    justify-content: center;
+  }
+  .brands__container img {
+    width: 16%;
+  }
+}

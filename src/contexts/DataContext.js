@@ -53,6 +53,7 @@ export function DataProvider({ children }) {
         categories: dataState.categories,
         user: dataState.user,
         dataDispatch,
+        isLoading,
       }}
     >
       {children}

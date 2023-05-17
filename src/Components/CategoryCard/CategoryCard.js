@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "../CategoryCard/CategoryCard.css";
+import { useData } from "../../contexts/DataContext";
 
-export function CategoryCard({ categories }) {
+export function CategoryCard() {
+  const { categories } = useData();
+
   return (
     <div className="categories__card__container">
       {categories.map(({ _id, categoryName, img }) => {
