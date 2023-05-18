@@ -4,7 +4,13 @@ import logo from "../../assets/logo.svg";
 import { useData } from "../../contexts/DataContext";
 
 export function Footer() {
-  const { categories } = useData();
+  const { categories, dataDispatch } = useData();
+
+  const handleClick = (categoryName) => {
+    document.documentElement.scrollTop = 0;
+    dataDispatch({ type: "CATEGORIES", payload: categoryName });
+  };
+
   return (
     <footer className="footer__container">
       <div className="container brand__contianer">
@@ -21,7 +27,11 @@ export function Footer() {
         <div className="categories">
           {categories.map(({ _id, categoryName }) => {
             return (
-              <Link key={_id} to="/products">
+              <Link
+                key={_id}
+                to="/products"
+                onClick={() => handleClick(categoryName)}
+              >
                 {`${categoryName[0].toUpperCase() + categoryName.slice(1)}`}
               </Link>
             );

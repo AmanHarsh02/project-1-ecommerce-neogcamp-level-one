@@ -57,6 +57,11 @@
   padding: 0.3rem 0rem;
   border: none;
   outline: none;
+  width: 100%;
+}
+
+.search__bar__container_bottom:focus-within {
+  border: 1px solid var(--primary-color);
 }
 
 .btn__help {
@@ -146,6 +151,11 @@
     padding: 0.3rem 0rem;
     border: none;
     outline: none;
+    width: 100%;
+  }
+
+  .search__bar__container:focus-within {
+    border: 1px solid var(--primary-color);
   }
 
   .search__bar__container * {

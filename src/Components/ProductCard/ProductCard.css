@@ -1,0 +1,95 @@
+.product__card__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 20vw;
+  border: 1px solid #7d7d7d;
+  border-radius: 0.5rem;
+  box-shadow: -5px 5px 10px gray;
+  background-color: #202020;
+}
+
+.image__container {
+  background-color: white;
+  height: 40vh;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.image__container img {
+  width: 100%;
+  height: 100%;
+}
+
+.details__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.details__heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.details__heading p {
+  width: 70%;
+  flex-grow: 1;
+}
+
+.details__heading div {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.add__to__card__btn {
+  cursor: pointer;
+  margin: 0.5rem 0rem 0rem 0rem;
+  color: white;
+  background-color: #202020;
+  border: 2px solid #7d7d7d;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  width: 100%;
+}
+
+.add__to__card__btn:hover {
+  background-color: #393939;
+}
+
+.original__price {
+  text-decoration: line-through;
+}
+
+.wishlist__icon {
+  cursor: pointer;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  background-color: #393939;
+  width: max-content;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
+  border-radius: 50%;
+}
+
+.wishlist__icon:hover {
+  background-color: #202020;
+}
+
+.discount__badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: lawngreen;
+  width: max-content;
+  padding: 0.2rem 1rem;
+  background-color: #393939;
+  border-radius: 0.4rem 0rem;
+}

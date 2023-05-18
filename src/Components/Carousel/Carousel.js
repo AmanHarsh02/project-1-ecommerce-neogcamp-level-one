@@ -27,10 +27,14 @@ export function Carousel() {
     getSourceImg();
   }, [image]);
 
+  const handleClick = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
     <div className="carousal__container">
       <div className="img__container">
-        <Link to="/products">
+        <Link to="/products" onClick={handleClick}>
           <img src={banner} alt="banner" />
         </Link>
         <div className="carousal__navigate__btn right">

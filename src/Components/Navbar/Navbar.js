@@ -1,9 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../Navbar/Navbar.css";
 import { Icon } from "@iconify/react";
 import logo from "../../assets/logo.svg";
+import { useData } from "../../contexts/DataContext";
 
 export function Navbar() {
+  const { dataDispatch } = useData();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/products");
+  };
+
   return (
     <nav className="nav__container">
       <div className="nav__main">
@@ -14,9 +22,12 @@ export function Navbar() {
           </NavLink>
         </div>
 
-        <div className="search__bar__container">
+        <div className="search__bar__container" onClick={handleClick}>
           <Icon icon="ic:outline-search" color="#282828" height={24} />
           <input
+            onChange={(e) =>
+              dataDispatch({ type: "SEARCH_VALUE", payload: e.target.value })
+            }
             className="search__bar"
             placeholder="search products..."
             type="text"
@@ -65,9 +76,12 @@ export function Navbar() {
         <button className="btn__help">? Help</button>
       </div>
 
-      <div className="search__bar__container_bottom">
+      <div className="search__bar__container_bottom" onClick={handleClick}>
         <Icon icon="ic:outline-search" color="#282828" height={24} />
         <input
+          onChange={(e) =>
+            dataDispatch({ type: "SEARCH_VALUE", payload: e.target.value })
+          }
           className="search__bar_bottom"
           placeholder="search products..."
           type="text"

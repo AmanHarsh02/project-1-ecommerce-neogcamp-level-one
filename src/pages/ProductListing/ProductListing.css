@@ -1,0 +1,23 @@
+.products__listing__container {
+  display: flex;
+  gap: 1rem;
+  background: linear-gradient(to right, #d1fae5, rgba(188, 148, 255, 0.56));
+}
+
+.aside {
+  width: 20%;
+}
+
+.main {
+  color: #7d7d7d;
+  flex-grow: 1;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.products__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15vw, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}

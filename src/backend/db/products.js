@@ -33,7 +33,7 @@ export const products = [
     discountedPrice: 2198,
     onSale: false,
     outOfStock: false,
-    rating: 4.8,
+    rating: 3.8,
     trending: false,
   },
   {
@@ -149,9 +149,10 @@ export const products = [
     categoryName: "lighting",
     price: 139.0,
     discountPercent: 0,
+    discountedPrice: 139.0,
     onSale: false,
     outOfStock: true,
-    rating: 4.2,
+    rating: 3.6,
     trending: false,
   },
   {
@@ -181,7 +182,7 @@ export const products = [
     discountedPrice: 44.99,
     onSale: true,
     outOfStock: false,
-    rating: 4.5,
+    rating: 2.5,
     trending: false,
   },
   {
@@ -256,7 +257,7 @@ export const products = [
     discountedPrice: 17.99,
     onSale: true,
     outOfStock: false,
-    rating: 4.5,
+    rating: 2.8,
     trending: false,
   },
 ];

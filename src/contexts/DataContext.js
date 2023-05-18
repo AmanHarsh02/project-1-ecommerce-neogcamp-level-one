@@ -46,13 +46,65 @@ export function DataProvider({ children }) {
     fetchData();
   }, []);
 
+  const applyFilters = (products) => {
+    let filteredData = [...products];
+    const searchValue = dataState.searchValue.trim().toLowerCase();
+    const selectedCategory = dataState.selectedCategory;
+    const sortMethod = dataState.sortMethod;
+    const ratingValue = dataState.ratingValue;
+    const priceRange = dataState.priceRange;
+
+    console.log(selectedCategory);
+
+    if (searchValue.length > 0) {
+      filteredData = filteredData.filter(({ productName }) =>
+        productName.toLowerCase().includes(searchValue)
+      );
+    }
+
+    if (priceRange) {
+      filteredData = filteredData.filter(
+        ({ discountedPrice }) => discountedPrice >= Number(priceRange)
+      );
+    }
+
+    if (selectedCategory.length > 0) {
+      const selectedCategory = dataState.selectedCategory;
+
+      filteredData = filteredData.filter(({ categoryName }) =>
+        selectedCategory.includes(categoryName)
+      );
+    }
+
+    if (ratingValue) {
+      filteredData = filteredData.filter(({ rating }) => rating >= ratingValue);
+    }
+
+    if (sortMethod) {
+      sortMethod === "ascending"
+        ? filteredData.sort((a, b) => a.discountedPrice - b.discountedPrice)
+        : filteredData.sort((a, b) => b.discountedPrice - a.discountedPrice);
+    }
+
+    return filteredData;
+  };
+
+  const filteredProducts = applyFilters(dataState.products);
+
   return (
     <DataContext.Provider
       value={{
         products: dataState.products,
         categories: dataState.categories,
         user: dataState.user,
+        searchValue: dataState.searchValue,
+        priceRange: dataState.priceRange,
+        selectedCategory: dataState.selectedCategory,
+        ratingValue: dataState.ratingValue,
+        sortMethod: dataState.sortMethod,
+        filteredProducts,
         dataDispatch,
+        dataState,
         isLoading,
       }}
     >
