@@ -11,7 +11,7 @@ export const products = [
     productName: "Canon EOS R6",
     productDescription: "Mirrorless Full-Frame Camera",
     productImage:
-      "https://images.unsplash.com/photo-1618894915263-e3ad4d326f07",
+      "https://images.unsplash.com/photo-1599664223843-9349c75196bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     categoryName: "cameras",
     price: 2399,
     discountPercent: 10,
@@ -26,7 +26,7 @@ export const products = [
     productName: "Sony FE 16-35mm f/2.8 GM Lens",
     productDescription: "Wide-Angle Zoom Lens for Sony E-mount Cameras",
     productImage:
-      "https://images.unsplash.com/photo-1620556848045-40d1b9af2e5b",
+      "https://www.tanotis.com/cdn/shop/products/sony_sel1635gm_fe_16_35mm_f_2_8_gm_1495038144000_1338516_800x.jpg?v=1576002574",
     categoryName: "lenses",
     price: 2198,
     discountPercent: 0,
@@ -34,14 +34,14 @@ export const products = [
     onSale: false,
     outOfStock: false,
     rating: 4.8,
-    trending: true,
+    trending: false,
   },
   {
     _id: uuid(),
     productName: "Manfrotto MT055CXPRO4 Carbon Fiber Tripod",
     productDescription: "Professional Tripod with Carbon Fiber Legs",
     productImage:
-      "https://images.unsplash.com/photo-1593093315218-dfb78beec3c1",
+      "https://cdn.manfrotto.com/media/catalog/product/cache/1e774dca205198565016e92bdb88ad55/m/t/mt055cxpro4.jpg",
     categoryName: "accessories",
     price: 489,
     discountPercent: 0,
@@ -53,10 +53,27 @@ export const products = [
   },
   {
     _id: uuid(),
-    productName: "Nikon D850",
-    productDescription: "Full-Frame DSLR Camera",
+    productName: "GoPro HERO 9 Black",
+    productDescription:
+      "Waterproof Sports Camera with Front LCD Screen & Rear Touch Screen,5K Ultra HD Video,20MP Photos,1080p Live Streaming, Stabilization-Black",
     productImage:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+      "https://static.gopro.com/assets/blta2b8522e5372af40/blt3fe219e4bdfa4a25/643ec271fa6b79233e8d5c90/pdp-h9-image01-1920-2x.png?width=1920&quality=80&auto=webp&disable=upscale",
+    categoryName: "cameras",
+    price: 450,
+    discountPercent: 20,
+    discountedPrice: 360,
+    onSale: true,
+    outOfStock: false,
+    rating: 4.9,
+    trending: true,
+  },
+  {
+    _id: uuid(),
+    productName: "Nikon D850",
+    productDescription:
+      "A powerful DSLR camera that features a high-resolution sensor and fast autofocus.",
+    productImage:
+      "https://cdn-4.nikon-cdn.com/e/Q5NM96RZZo-YRYNeYvAi9beHK4x3L-8h09FYyKWnWU6L2l14O7STBw==/Views/1585_D850_left.png",
     categoryName: "cameras",
     price: 2999,
     discountPercent: 15,
@@ -70,7 +87,7 @@ export const products = [
     _id: uuid(),
     productName: "Canon EF 70-200mm f/2.8L IS III USM Lens",
     productDescription: "Telephoto Zoom Lens for Canon DSLR Cameras",
-    productImage: "https://images.unsplash.com/photo-1563254019-09f0f0aa61b5",
+    productImage: "https://m.media-amazon.com/images/I/61PDQet-AzL._SX522_.jpg",
     categoryName: "lenses",
     price: 2099,
     discountPercent: 0,
@@ -84,8 +101,7 @@ export const products = [
     _id: uuid(),
     productName: "Profoto A1X AirTTL-N Studio Light for Nikon",
     productDescription: "Portable Studio Flash for Nikon Cameras",
-    productImage:
-      "https://images.unsplash.com/photo-1576878104087-28fb4c4d5cc2",
+    productImage: "https://m.media-amazon.com/images/I/81Myv5AcSeL._SX522_.jpg",
     categoryName: "lighting",
     price: 1099,
     discountPercent: 20,
@@ -100,7 +116,7 @@ export const products = [
     productName: "Lowepro ProTactic BP 450 AW II Camera Backpack",
     productDescription: "Camera Backpack with Customizable Interior",
     productImage:
-      "https://images.unsplash.com/photo-1537716316812-50d2f4d13a31",
+      "https://cdn.lowepro.com/media/catalog/product/cache/1e774dca205198565016e92bdb88ad55/c/a/camera-backpack-protactic-bp-450-ii-aw-lp37177-stuffeda-rgb.jpg",
     categoryName: "bags",
     price: 249,
     discountPercent: 10,
@@ -114,8 +130,7 @@ export const products = [
     _id: uuid(),
     productName: "Sony a7 III",
     productDescription: "Full-Frame Mirrorless Camera",
-    productImage:
-      "https://images.unsplash.com/photo-1589651812743-e245fd1bfe44",
+    productImage: "https://m.media-amazon.com/images/I/91rQ3XfEYzL._SX522_.jpg",
     categoryName: "cameras",
     price: 1999,
     discountPercent: 0,
@@ -130,8 +145,7 @@ export const products = [
     productName: "Godox SL-60W LED Video Light",
     productDescription:
       "A powerful LED light designed for video and photography, featuring adjustable color temperature, wireless remote control, and quiet fan cooling.",
-    productImage:
-      "https://images.unsplash.com/photo-1618856364133-1d98a09a9a7a",
+    productImage: "https://m.media-amazon.com/images/I/61wAYBPWWIL._SX522_.jpg",
     categoryName: "lighting",
     price: 139.0,
     discountPercent: 0,
@@ -142,27 +156,10 @@ export const products = [
   },
   {
     _id: uuid(),
-    productName: "Nikon D850 DSLR Camera",
-    productDescription:
-      "A powerful DSLR camera that features a high-resolution sensor and fast autofocus.",
-    productImage:
-      "https://images.unsplash.com/photo-1584470589654-07d55cf5a4b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    categoryName: "cameras",
-    price: 2799.99,
-    discountPercent: 15,
-    discountedPrice: 2379.99,
-    onSale: true,
-    outOfStock: false,
-    rating: 4.9,
-    trending: true,
-  },
-  {
-    _id: uuid(),
     productName: "Canon EF 50mm f/1.4 USM Standard Lens",
     productDescription:
       "A fast and sharp lens that is ideal for low-light photography and portraits.",
-    productImage:
-      "https://images.unsplash.com/photo-1586875940405-a57d07b4dcd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    productImage: "https://m.media-amazon.com/images/I/61kBwnHGUdL._SX679_.jpg",
     categoryName: "lenses",
     price: 399.99,
     discountPercent: 0,
@@ -174,11 +171,39 @@ export const products = [
   },
   {
     _id: uuid(),
+    productName: "SanDisk 128GB Extreme Pro SDXC UHS-I Memory Card",
+    productDescription:
+      "The SanDisk Extreme Pro SDXC UHS-I Memory Card is a high-speed card that is perfect for recording 4K video and taking high-resolution photos. It features a read speed of up to 170MB/s and a write speed of up to 90MB/s.",
+    productImage: "https://m.media-amazon.com/images/I/61ao4RlOuCL._SX679_.jpg",
+    categoryName: "accessories",
+    price: 49.99,
+    discountPercent: 10,
+    discountedPrice: 44.99,
+    onSale: true,
+    outOfStock: false,
+    rating: 4.5,
+    trending: false,
+  },
+  {
+    _id: uuid(),
+    productName: "Vanguard BACKPACK",
+    productDescription: "Camera Backpack with Customizable Interior",
+    productImage: "https://m.media-amazon.com/images/I/71yUghBd0eL._SX522_.jpg",
+    categoryName: "bags",
+    price: 150,
+    discountPercent: 20,
+    discountedPrice: 130,
+    onSale: true,
+    outOfStock: false,
+    rating: 4.6,
+    trending: false,
+  },
+  {
+    _id: uuid(),
     productName: "Sigma 24-70mm f/2.8 DG OS HSM Art Lens",
     productDescription:
       "A versatile and high-quality zoom lens that delivers sharp and detailed images.",
-    productImage:
-      "https://images.unsplash.com/photo-1585500068746-0b7d763e2e92?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    productImage: "https://m.media-amazon.com/images/I/71kltHdtE9L._SX522_.jpg",
     categoryName: "lenses",
     price: 1299.99,
     discountPercent: 20,
@@ -190,27 +215,10 @@ export const products = [
   },
   {
     _id: uuid(),
-    productName: "SanDisk Extreme Pro SDXC UHS-I Memory Card",
+    productName: "Rode USB Videomic Pro+",
     productDescription:
-      "The SanDisk Extreme Pro SDXC UHS-I Memory Card is a high-speed card that is perfect for recording 4K video and taking high-resolution photos. It features a read speed of up to 170MB/s and a write speed of up to 90MB/s.",
-    productImage:
-      "https://www.bhphotovideo.com/images/images1000x1000/sandisk/extreme_pro_sdxc_uhs_i_memory_card_1324683.jpg",
-    categoryName: "accessories",
-    price: 49.99,
-    discountPercent: 10,
-    discountedPrice: 44.99,
-    onSale: true,
-    outOfStock: false,
-    rating: 4.5,
-    trending: true,
-  },
-  {
-    _id: uuid(),
-    productName: "Neewer NW-700 Professional On-Camera Shotgun Microphone",
-    productDescription:
-      "The Neewer NW-700 Professional On-Camera Shotgun Microphone is a high-quality microphone that is perfect for recording audio for video. It features a cardioid pickup pattern, a low-cut filter, and a wind muff.",
-    productImage:
-      "https://www.bhphotovideo.com/images/images1000x1000/neewer/nw_700_professional_on_camera_shotgun_microphone_1324685.jpg",
+      "The Rode USB Videomic Pro+ Compact Directional On-Camera Shotgun Condenser Microphone is a high-quality microphone that is perfect for recording audio for video.",
+    productImage: "https://m.media-amazon.com/images/I/51yFY3wSrQL._SX679_.jpg",
     categoryName: "accessories",
     price: 79.99,
     discountPercent: 15,
@@ -225,8 +233,7 @@ export const products = [
     productName: "Joby GorillaPod SLR-Zoom Tripod",
     productDescription:
       "The Joby GorillaPod SLR-Zoom Tripod is a flexible and versatile tripod that is perfect for holding your camera steady. It features three articulating legs that can be wrapped around objects, and a ball head that allows you to quickly and easily adjust the angle of your camera.",
-    productImage:
-      "https://www.bhphotovideo.com/images/images1000x1000/joby/gorillapod_slr_zoom_tripod_1324687.jpg",
+    productImage: "https://m.media-amazon.com/images/I/51jpuZ0zm9L._SX522_.jpg",
     categoryName: "accessories",
     price: 59.99,
     discountPercent: 20,
@@ -242,7 +249,7 @@ export const products = [
     productDescription:
       "The LensPen Lens Cleaning Pen is a small and portable tool that is perfect for cleaning your lenses. It features a soft brush that removes dust and dirt, and a solvent-free cleaning fluid that removes fingerprints and smudges.",
     productImage:
-      "https://www.bhphotovideo.com/images/images1000x1000/lenspen/lens_cleaning_pen_1324689.jpg",
+      "https://lenspen.com/cdn/shop/products/LensPen1_600x.jpg?v=1628958097",
     categoryName: "accessories",
     price: 19.99,
     discountPercent: 10,
