@@ -1,7 +1,9 @@
+import { IndividualProductCard } from "../../Components";
+
 export function IndividualProduct() {
   return (
     <>
-      <h1>Individual Product Page</h1>
+      <IndividualProductCard />
     </>
   );
 }

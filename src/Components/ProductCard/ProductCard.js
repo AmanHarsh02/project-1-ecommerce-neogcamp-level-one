@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import "../ProductCard/ProductCard.css";
+import { useNavigate } from "react-router";
 
 export function ProductCard({ product }) {
   const {
@@ -13,34 +14,46 @@ export function ProductCard({ product }) {
     rating,
   } = product;
 
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    const clickedOn = e.target.tagName;
+
+    if (clickedOn === "IMG") {
+      navigate(`/product/${_id}`);
+    }
+  };
+
   return (
     <div className="product__card__container">
-      {onSale && <div className="discount__badge">{discountPercent}% Off</div>}
-
-      <div className="wishlist__icon">
-        <Icon icon="mdi:cards-heart-outline" color="white" height={24} />
-      </div>
-
-      <div className="image__container">
+      <div className="image__container" onClick={(e) => handleClick(e)}>
         <img src={productImage} alt={productName} />
+
+        {onSale && (
+          <div className="discount__badge">{discountPercent}% Off</div>
+        )}
+
+        <div className="wishlist__icon">
+          <Icon icon="mdi:cards-heart-outline" color="#393939" height={24} />
+        </div>
       </div>
 
       <div className="details__container">
         <div className="details__heading">
-          <p>{productName}</p>
+          <p className="product__name__container">{productName}</p>
 
-          <div>
+          <div className="rating__container">
             <p>{rating}</p>
             <Icon
               icon="material-symbols:star-rounded"
-              color="yellow"
+              color="#FFC700"
               height={20}
             />
           </div>
         </div>
 
         <div>
-          <h3>$ {discountedPrice}</h3>
+          <h3>$ {discountedPrice}/-</h3>
 
           {onSale && <p className="original__price">$ {price}</p>}
 
