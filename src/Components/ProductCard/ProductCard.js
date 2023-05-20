@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react";
 import "../ProductCard/ProductCard.css";
 import { useNavigate } from "react-router";
+import { useCart } from "../../contexts/CartContext";
+import { useData } from "../../contexts/DataContext";
 
 export function ProductCard({ product }) {
   const {
@@ -12,8 +14,10 @@ export function ProductCard({ product }) {
     discountPercent,
     onSale,
     rating,
+    presentInCart,
   } = product;
-
+  const { products } = useData();
+  const { handleAddToCart } = useCart();
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -21,6 +25,14 @@ export function ProductCard({ product }) {
 
     if (clickedOn === "IMG") {
       navigate(`/product/${_id}`);
+    }
+  };
+
+  const handleCartClick = () => {
+    if (!presentInCart) {
+      handleAddToCart("ADD_TO_CART", _id, products);
+    } else {
+      navigate("/cart");
     }
   };
 
@@ -57,7 +69,12 @@ export function ProductCard({ product }) {
 
           {onSale && <p className="original__price">$ {price}</p>}
 
-          <button className="add__to__card__btn">Add to Cart</button>
+          <button
+            className="add__to__cart__btn"
+            onClick={() => handleCartClick()}
+          >
+            {presentInCart ? "Go to Cart" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>

@@ -54,8 +54,6 @@ export function DataProvider({ children }) {
     const ratingValue = dataState.ratingValue;
     const priceRange = dataState.priceRange;
 
-    console.log(selectedCategory);
-
     if (searchValue.length > 0) {
       filteredData = filteredData.filter(({ productName }) =>
         productName.toLowerCase().includes(searchValue)

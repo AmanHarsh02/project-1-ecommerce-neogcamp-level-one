@@ -2,8 +2,6 @@ export const initialState = {
   user: {},
   products: [],
   categories: [],
-  cart: [],
-  wishlist: [],
   address: [],
   searchValue: "",
   sortMethod: "",

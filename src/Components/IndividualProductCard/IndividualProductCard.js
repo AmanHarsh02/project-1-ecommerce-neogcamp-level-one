@@ -1,11 +1,14 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "../IndividualProductCard/IndividualProductCard.css";
 import { useData } from "../../contexts/DataContext";
 import { Icon } from "@iconify/react";
+import { useCart } from "../../contexts/CartContext";
 
 export function IndividualProductCard() {
   const { productId } = useParams();
   const { products } = useData();
+  const { handleAddToCart } = useCart();
+  const navigate = useNavigate();
 
   const selectedProduct = products.find(({ _id }) => _id === productId);
 
@@ -18,7 +21,16 @@ export function IndividualProductCard() {
     discountPercent,
     onSale,
     rating,
+    presentInCart,
   } = selectedProduct ?? "";
+
+  const handleCartClick = () => {
+    if (!presentInCart) {
+      handleAddToCart("ADD_TO_CART", productId, products);
+    } else {
+      navigate("/cart");
+    }
+  };
 
   return (
     <div className="individual__product__container">
@@ -63,7 +75,9 @@ export function IndividualProductCard() {
             <b>Description:</b> {productDescription}
           </p>
 
-          <button className="add__to__cart__btn">Add to Cart</button>
+          <button id="add__to__cart__btn" onClick={() => handleCartClick()}>
+            {presentInCart ? "Go to Cart" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>
