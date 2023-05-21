@@ -3,11 +3,14 @@ import "../IndividualProductCard/IndividualProductCard.css";
 import { useData } from "../../contexts/DataContext";
 import { Icon } from "@iconify/react";
 import { useCart } from "../../contexts/CartContext";
+import { useWishlist } from "../../contexts/WishlistContext";
 
 export function IndividualProductCard() {
   const { productId } = useParams();
   const { products } = useData();
   const { cart, handleAddToCart } = useCart();
+  const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
+    useWishlist();
   const navigate = useNavigate();
 
   const selectedProduct = products.find(({ _id }) => _id === productId);
@@ -26,11 +29,21 @@ export function IndividualProductCard() {
 
   const presentInCart = cart.find((product) => product._id === _id);
 
+  const presentInWishlist = wishlist.find((product) => product._id === _id);
+
   const handleCartClick = () => {
     if (!presentInCart) {
       handleAddToCart("ADD_TO_CART", productId, products);
     } else {
       navigate("/cart");
+    }
+  };
+
+  const handleWishlistClick = () => {
+    if (!presentInWishlist) {
+      handleAddToWishlist("ADD_TO_WISHLIST", _id, products);
+    } else {
+      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
     }
   };
 
@@ -43,12 +56,16 @@ export function IndividualProductCard() {
 
             {onSale && <div id="discount__badge">{discountPercent}% Off</div>}
 
-            <div id="wishlist__icon">
-              <Icon
-                icon="mdi:cards-heart-outline"
-                color="#393939"
-                height={24}
-              />
+            <div id="wishlist__icon" onClick={() => handleWishlistClick()}>
+              {presentInWishlist ? (
+                <Icon icon="mdi:cards-heart" color="red" height={24} />
+              ) : (
+                <Icon
+                  icon="mdi:cards-heart-outline"
+                  color="#393939"
+                  height={24}
+                />
+              )}
             </div>
           </div>
         </div>

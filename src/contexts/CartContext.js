@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { useData } from "./DataContext";
 import { cartReducer, initialState } from "../reducers/CartReducer";
 import { useAuth } from "./AuthContext";
@@ -9,10 +9,6 @@ export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
   const { loggedIn } = useAuth();
 
-  const {
-    user: { cart },
-  } = useData();
-
   const callCartDispatch = (actionType, payload) => {
     cartDispatch({
       type: actionType,
@@ -21,7 +17,7 @@ export function CartProvider({ children }) {
   };
 
   const handleAddToCart = (actionType, productId, products) => {
-    if (!loggedIn) {
+    if (loggedIn) {
       const payload = { productId: productId, products: products };
 
       callCartDispatch(actionType, payload);
@@ -42,6 +38,12 @@ export function CartProvider({ children }) {
     callCartDispatch(actionType, payload);
   };
 
+  const handleMoveToCart = (actionType, productId, wishlist) => {
+    const payload = { productId: productId, wishlist: wishlist };
+
+    callCartDispatch(actionType, payload, wishlist);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -50,6 +52,7 @@ export function CartProvider({ children }) {
         handleAddToCart,
         handleRemoveFromCart,
         handleIncreaseOrDecrease,
+        handleMoveToCart,
       }}
     >
       {children}

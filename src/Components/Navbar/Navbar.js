@@ -4,10 +4,12 @@ import { Icon } from "@iconify/react";
 import logo from "../../assets/logo.svg";
 import { useData } from "../../contexts/DataContext";
 import { useCart } from "../../contexts/CartContext";
+import { useWishlist } from "../../contexts/WishlistContext";
 
 export function Navbar() {
   const { dataDispatch } = useData();
   const { cart } = useCart();
+  const { wishlist } = useWishlist();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -44,7 +46,7 @@ export function Navbar() {
                 color="#5348c7"
                 height={24}
               />
-              <div className="count__badge">0</div>
+              <div className="count__badge">{wishlist.length}</div>
             </div>
             <p>Wishlist</p>
           </NavLink>

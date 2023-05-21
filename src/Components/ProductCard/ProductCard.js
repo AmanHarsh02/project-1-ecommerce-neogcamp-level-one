@@ -3,8 +3,9 @@ import "../ProductCard/ProductCard.css";
 import { useNavigate } from "react-router";
 import { useCart } from "../../contexts/CartContext";
 import { useData } from "../../contexts/DataContext";
+import { useWishlist } from "../../contexts/WishlistContext";
 
-export function ProductCard({ product }) {
+export function ProductCard({ product, add, move }) {
   const {
     _id,
     productName,
@@ -16,10 +17,14 @@ export function ProductCard({ product }) {
     rating,
   } = product;
   const { products } = useData();
-  const { cart, handleAddToCart } = useCart();
+  const { cart, handleAddToCart, handleMoveToCart } = useCart();
+  const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
+    useWishlist();
   const navigate = useNavigate();
 
   const presentInCart = cart.find((product) => product._id === _id);
+
+  const presentInWishlist = wishlist.find((product) => product._id === _id);
 
   const handleClick = (e) => {
     const clickedOn = e.target.tagName;
@@ -30,10 +35,27 @@ export function ProductCard({ product }) {
   };
 
   const handleCartClick = () => {
-    if (!presentInCart) {
-      handleAddToCart("ADD_TO_CART", _id, products);
+    if (add) {
+      if (!presentInCart) {
+        handleAddToCart("ADD_TO_CART", _id, products);
+      } else {
+        navigate("/cart");
+      }
     } else {
-      navigate("/cart");
+      if (!presentInCart) {
+        handleMoveToCart("MOVE_TO_CART", _id, wishlist);
+        handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
+      } else {
+        navigate("/cart");
+      }
+    }
+  };
+
+  const handleWishlistClick = () => {
+    if (!presentInWishlist) {
+      handleAddToWishlist("ADD_TO_WISHLIST", _id, products);
+    } else {
+      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
     }
   };
 
@@ -46,8 +68,12 @@ export function ProductCard({ product }) {
           <div className="discount__badge">{discountPercent}% Off</div>
         )}
 
-        <div className="wishlist__icon">
-          <Icon icon="mdi:cards-heart-outline" color="#393939" height={24} />
+        <div className="wishlist__icon" onClick={() => handleWishlistClick()}>
+          {presentInWishlist ? (
+            <Icon icon="mdi:cards-heart" color="red" height={24} />
+          ) : (
+            <Icon icon="mdi:cards-heart-outline" color="#393939" height={24} />
+          )}
         </div>
       </div>
 
@@ -70,12 +96,23 @@ export function ProductCard({ product }) {
 
           {onSale && <p className="original__price">$ {price}</p>}
 
-          <button
-            className="add__to__cart__btn"
-            onClick={() => handleCartClick()}
-          >
-            {presentInCart ? "Go to Cart" : "Add to Cart"}
-          </button>
+          {add && (
+            <button
+              className="add__to__cart__btn"
+              onClick={() => handleCartClick()}
+            >
+              {presentInCart ? "Go to Cart" : "Add to Cart"}
+            </button>
+          )}
+
+          {move && (
+            <button
+              className="add__to__cart__btn"
+              onClick={() => handleCartClick()}
+            >
+              {presentInCart ? "Go to Cart" : "  Move to Cart"}
+            </button>
+          )}
         </div>
       </div>
     </div>

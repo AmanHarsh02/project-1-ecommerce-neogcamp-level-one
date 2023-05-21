@@ -1,12 +1,9 @@
 export const initialState = {
-  products: [],
   cart: [],
 };
 
 export const cartReducer = (state, action) => {
   switch (action.type) {
-    case "SET_PRODUCTS":
-      return { ...state, products: action.payload };
     case "ADD_TO_CART": {
       const newCart = [...state.cart];
       const productId = action.payload.productId;
@@ -60,6 +57,22 @@ export const cartReducer = (state, action) => {
         );
       } else {
         newCart = newCart.filter(({ _id }) => _id !== productId);
+      }
+
+      return { ...state, cart: newCart };
+    }
+    case "MOVE_TO_CART": {
+      const newCart = [...state.cart];
+      const productId = action.payload.productId;
+      const wishlist = action.payload.wishlist;
+
+      const selectedProduct = wishlist.find(({ _id }) => _id === productId);
+
+      const foundProduct = newCart.find(({ _id }) => _id === productId);
+
+      if (!foundProduct) {
+        selectedProduct.quantity = 1;
+        newCart.push(selectedProduct);
       }
 
       return { ...state, cart: newCart };

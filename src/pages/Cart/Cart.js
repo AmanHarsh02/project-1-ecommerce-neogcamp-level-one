@@ -1,7 +1,8 @@
 import "../Cart/Cart.css";
 import { useCart } from "../../contexts/CartContext";
 import { CartPriceCard, CartProductCard } from "../../Components";
-import { empty_card_illustration } from "../../assets/index";
+import { empty_cart_illustration } from "../../assets/index";
+
 export function Cart() {
   const { cart } = useCart();
 
@@ -13,7 +14,7 @@ export function Cart() {
         <div className="cart__products__container">
           {cart.length === 0 && (
             <img
-              src={empty_card_illustration}
+              src={empty_cart_illustration}
               alt="Empty Cart"
               className="empty__cart__img"
             ></img>

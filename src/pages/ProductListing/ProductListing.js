@@ -15,7 +15,14 @@ export function ProductListing() {
 
         <div className="products__container">
           {filteredProducts.map((product) => {
-            return <ProductCard product={product} key={product._id} />;
+            return (
+              <ProductCard
+                product={product}
+                add={true}
+                move={false}
+                key={product._id}
+              />
+            );
           })}
         </div>
       </div>

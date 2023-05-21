@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react";
 import "../CartProductCard/CartProductCard.css";
 import { useCart } from "../../contexts/CartContext";
+import { useWishlist } from "../../contexts/WishlistContext";
+import { useNavigate } from "react-router";
 
 export function CartProductCard({ product }) {
   const {
@@ -12,10 +14,22 @@ export function CartProductCard({ product }) {
     discountPercent,
     onSale,
     rating,
-    presentInCart,
     quantity,
   } = product;
-  const { handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
+  const { cart, handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
+  const { wishlist, handleMoveToWishlist } = useWishlist();
+  const navigate = useNavigate();
+
+  const presentInWishlist = wishlist.find((product) => product._id === _id);
+
+  const handleWishlistClick = () => {
+    if (!presentInWishlist) {
+      handleMoveToWishlist("MOVE_TO_WISHLIST", _id, cart);
+      handleRemoveFromCart("REMOVE_FROM_CART", _id);
+    } else {
+      navigate("/wishlist");
+    }
+  };
 
   return (
     <div className="cart__product__card__container">
@@ -55,12 +69,21 @@ export function CartProductCard({ product }) {
           </div>
         </div>
 
-        <button
-          className="remove__from__cart__btn"
-          onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", _id)}
-        >
-          Remove From Cart
-        </button>
+        <div className="buttons__container">
+          <button
+            className="remove__from__cart__btn"
+            onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", _id)}
+          >
+            Remove From Cart
+          </button>
+
+          <button
+            className="move__to__wishlist__btn"
+            onClick={() => handleWishlistClick()}
+          >
+            {presentInWishlist ? "Go To Wishlist" : "Move To Wishlist"}
+          </button>
+        </div>
       </div>
     </div>
   );
