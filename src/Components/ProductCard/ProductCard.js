@@ -14,11 +14,12 @@ export function ProductCard({ product }) {
     discountPercent,
     onSale,
     rating,
-    presentInCart,
   } = product;
   const { products } = useData();
-  const { handleAddToCart } = useCart();
+  const { cart, handleAddToCart } = useCart();
   const navigate = useNavigate();
+
+  const presentInCart = cart.find((product) => product._id === _id);
 
   const handleClick = (e) => {
     const clickedOn = e.target.tagName;

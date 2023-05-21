@@ -7,12 +7,13 @@ import { useCart } from "../../contexts/CartContext";
 export function IndividualProductCard() {
   const { productId } = useParams();
   const { products } = useData();
-  const { handleAddToCart } = useCart();
+  const { cart, handleAddToCart } = useCart();
   const navigate = useNavigate();
 
   const selectedProduct = products.find(({ _id }) => _id === productId);
 
   const {
+    _id,
     productName,
     productDescription,
     productImage,
@@ -21,8 +22,9 @@ export function IndividualProductCard() {
     discountPercent,
     onSale,
     rating,
-    presentInCart,
   } = selectedProduct ?? "";
+
+  const presentInCart = cart.find((product) => product._id === _id);
 
   const handleCartClick = () => {
     if (!presentInCart) {

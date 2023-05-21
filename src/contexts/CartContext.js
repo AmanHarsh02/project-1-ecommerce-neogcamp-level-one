@@ -13,15 +13,33 @@ export function CartProvider({ children }) {
     user: { cart },
   } = useData();
 
+  const callCartDispatch = (actionType, payload) => {
+    cartDispatch({
+      type: actionType,
+      payload: payload,
+    });
+  };
+
   const handleAddToCart = (actionType, productId, products) => {
-    if (loggedIn) {
-      cartDispatch({
-        type: actionType,
-        payload: { productId: productId, products: products },
-      });
+    if (!loggedIn) {
+      const payload = { productId: productId, products: products };
+
+      callCartDispatch(actionType, payload);
     } else {
       console.warn("Please login first");
     }
+  };
+
+  const handleRemoveFromCart = (actionType, productId) => {
+    const payload = productId;
+
+    callCartDispatch(actionType, payload);
+  };
+
+  const handleIncreaseOrDecrease = (actionType, productId) => {
+    const payload = productId;
+
+    callCartDispatch(actionType, payload);
   };
 
   return (
@@ -30,6 +48,8 @@ export function CartProvider({ children }) {
         cart: cartState.cart,
         cartDispatch,
         handleAddToCart,
+        handleRemoveFromCart,
+        handleIncreaseOrDecrease,
       }}
     >
       {children}

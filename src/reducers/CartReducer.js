@@ -17,8 +17,49 @@ export const cartReducer = (state, action) => {
       const foundProduct = newCart.find(({ _id }) => _id === productId);
 
       if (!foundProduct) {
-        selectedProduct.presentInCart = true;
+        selectedProduct.quantity = 1;
         newCart.push(selectedProduct);
+      }
+
+      return { ...state, cart: newCart };
+    }
+    case "REMOVE_FROM_CART": {
+      let newCart = [...state.cart];
+      const productId = action.payload;
+      const selectedProduct = newCart.find(({ _id }) => _id === productId);
+
+      if (selectedProduct) {
+        newCart = newCart.filter(({ _id }) => _id !== productId);
+      }
+
+      return { ...state, cart: newCart };
+    }
+    case "INCREASE_ITEM": {
+      let newCart = [...state.cart];
+      const productId = action.payload;
+      const selectedProduct = newCart.find(({ _id }) => _id === productId);
+
+      newCart = newCart.map((product) =>
+        product._id === productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      );
+
+      return { ...state, cart: newCart };
+    }
+    case "DECREASE_ITEM": {
+      let newCart = [...state.cart];
+      const productId = action.payload;
+      const selectedProduct = newCart.find(({ _id }) => _id === productId);
+
+      if (selectedProduct.quantity > 1) {
+        newCart = newCart.map((product) =>
+          product._id === productId
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        );
+      } else {
+        newCart = newCart.filter(({ _id }) => _id !== productId);
       }
 
       return { ...state, cart: newCart };

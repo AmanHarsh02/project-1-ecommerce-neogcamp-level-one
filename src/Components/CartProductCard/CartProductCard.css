@@ -37,6 +37,21 @@
   flex-wrap: wrap;
 }
 
+.quantity__container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.quantity__counter__container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.increase__decrease__icons {
+  cursor: pointer;
+}
+
 .remove__from__cart__btn {
   cursor: pointer;
   padding: 0.4rem;

@@ -1,4 +1,6 @@
+import { Icon } from "@iconify/react";
 import "../CartProductCard/CartProductCard.css";
+import { useCart } from "../../contexts/CartContext";
 
 export function CartProductCard({ product }) {
   const {
@@ -11,7 +13,9 @@ export function CartProductCard({ product }) {
     onSale,
     rating,
     presentInCart,
+    quantity,
   } = product;
+  const { handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
 
   return (
     <div className="cart__product__card__container">
@@ -30,11 +34,33 @@ export function CartProductCard({ product }) {
 
         {onSale && <h3>{discountPercent}% Off</h3>}
 
-        <p>
-          Quantity: <span>-</span> 1 <span>+</span>
-        </p>
+        <div className="quantity__container">
+          <p>Quantity:</p>
+          <div className="quantity__counter__container">
+            <Icon
+              icon="simple-line-icons:minus"
+              color="#5348c7"
+              className="increase__decrease__icons"
+              onClick={() => handleIncreaseOrDecrease("DECREASE_ITEM", _id)}
+            />
 
-        <button className="remove__from__cart__btn">Remove From Cart</button>
+            <p>{quantity}</p>
+
+            <Icon
+              icon="simple-line-icons:plus"
+              color="#5348c7"
+              className="increase__decrease__icons"
+              onClick={() => handleIncreaseOrDecrease("INCREASE_ITEM", _id)}
+            />
+          </div>
+        </div>
+
+        <button
+          className="remove__from__cart__btn"
+          onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", _id)}
+        >
+          Remove From Cart
+        </button>
       </div>
     </div>
   );

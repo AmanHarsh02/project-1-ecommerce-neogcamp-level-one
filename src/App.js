@@ -23,14 +23,7 @@ function App() {
         <Route path="/products" element={<ProductListing />} />
         <Route path="/product/:productId" element={<IndividualProduct />} />
 
-        <Route
-          path="/cart"
-          element={
-            <ProtectedRoute>
-              <Cart />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/cart" element={<Cart />} />
 
         <Route
           path="/wishlist"

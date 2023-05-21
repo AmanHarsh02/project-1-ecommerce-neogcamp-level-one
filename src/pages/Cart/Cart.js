@@ -1,6 +1,6 @@
 import "../Cart/Cart.css";
 import { useCart } from "../../contexts/CartContext";
-import { CartProductCard } from "../../Components";
+import { CartPriceCard, CartProductCard } from "../../Components";
 
 export function Cart() {
   const { cart } = useCart();
@@ -15,29 +15,8 @@ export function Cart() {
             return <CartProductCard key={product._id} product={product} />;
           })}
         </div>
-        <div className="cart__price__details__container">
-          <h3>Price Details</h3>
-          <hr></hr>
-          <div>
-            <p>Price</p>
-            <p>2000</p>
-          </div>
-          <div>
-            <p>Discount</p>
-            <p>-1000</p>
-          </div>
-          <div>
-            <p>Delivery Charges</p>
-            <p>500</p>
-          </div>
-          <hr></hr>
-          <div>
-            <h3>Total Amount</h3>
-            <h3>2500</h3>
-          </div>
-          <hr></hr>
-          <p>You will save 1000 on this order</p>
-          <button className="place__order__btn">Place Order</button>
+        <div>
+          <CartPriceCard cart={cart} />
         </div>
       </div>
     </div>
