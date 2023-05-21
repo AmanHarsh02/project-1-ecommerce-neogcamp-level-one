@@ -8,3 +8,4 @@ export { Footer } from "./Footer/Footer";
 export { Filters } from "./Filters/Filters";
 export { ProductCard } from "./ProductCard/ProductCard";
 export { IndividualProductCard } from "./IndividualProductCard/IndividualProductCard";
+export { CartProductCard } from "./CartProductCard/CartProductCard";
