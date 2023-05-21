@@ -25,12 +25,9 @@ export const wishlistReducer = (state, action) => {
 
       const selectedProduct = newWishlist.find(({ _id }) => _id === productId);
 
-      console.log(selectedProduct);
       if (selectedProduct) {
         newWishlist = newWishlist.filter(({ _id }) => _id !== productId);
       }
-
-      console.log(newWishlist);
 
       return { ...state, wishlist: newWishlist };
     }

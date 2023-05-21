@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-import { useData } from "./DataContext";
 import { cartReducer, initialState } from "../reducers/CartReducer";
 import { useAuth } from "./AuthContext";
 

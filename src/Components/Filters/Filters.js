@@ -49,9 +49,9 @@ export function Filters() {
       <div className="category__container">
         <h3>Category</h3>
 
-        {categories.map(({ categoryName }) => {
+        {categories.map(({ _id, categoryName }) => {
           return (
-            <label>
+            <label key={_id}>
               <input
                 onChange={(e) =>
                   dataDispatch({ type: "CATEGORIES", payload: e.target.value })
@@ -69,9 +69,9 @@ export function Filters() {
       <div className="rating__container">
         <h3>Rating</h3>
 
-        {ratings.map((rating) => {
+        {ratings.map((rating, i) => {
           return (
-            <label>
+            <label key={i}>
               <input
                 onChange={(e) =>
                   dataDispatch({ type: "RATING", payload: e.target.value })

@@ -20,10 +20,7 @@ export function WishlistProvider({ children }) {
   };
 
   const handleAddToWishlist = (actionType, productId, products) => {
-    console.log(actionType, productId);
     if (loggedIn) {
-      console.log(actionType, productId);
-
       const payload = { productId: productId, products: products };
 
       callWishlistDispatch(actionType, payload);
