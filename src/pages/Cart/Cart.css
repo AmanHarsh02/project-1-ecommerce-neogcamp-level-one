@@ -24,6 +24,11 @@
   gap: 1.5rem;
 }
 
+.empty__cart__img {
+  width: 100%;
+  margin: 0rem auto;
+}
+
 @media screen and (min-width: 1024px) {
   .cart__details__container {
     flex-direction: row;
@@ -31,5 +36,9 @@
 
   .cart__price__details__container {
     min-width: 300px;
+  }
+
+  .empty__cart__img {
+    width: 80%;
   }
 }

@@ -6,6 +6,7 @@ import brand_logo_2 from "./trending_brand_logo_2.svg";
 import brand_logo_3 from "./trending_brand_logo_3.svg";
 import brand_logo_4 from "./trending_brand_logo_4.svg";
 import brand_logo_5 from "./trending_brand_logo_5.svg";
+import empty_card_illustration from "./empty_cart_illustration.svg";
 
 export {
   banner_0,
@@ -16,4 +17,5 @@ export {
   brand_logo_3,
   brand_logo_4,
   brand_logo_5,
+  empty_card_illustration,
 };
