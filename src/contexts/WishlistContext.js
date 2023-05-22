@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { useData } from "./DataContext";
 import { useAuth } from "./AuthContext";
 import { initialState, wishlistReducer } from "../reducers/WishlistReducer";
+import { toast } from "react-toastify";
 
 const WishlistContext = createContext();
 
@@ -11,6 +12,7 @@ export function WishlistProvider({ children }) {
     initialState
   );
   const { loggedIn } = useAuth();
+  const token = localStorage.getItem("token");
 
   const callWishlistDispatch = (actionType, payload) => {
     wishlistDispatch({
@@ -19,20 +21,45 @@ export function WishlistProvider({ children }) {
     });
   };
 
-  const handleAddToWishlist = (actionType, productId, products) => {
+  const handleAddToWishlist = async (actionType, product) => {
     if (loggedIn) {
-      const payload = { productId: productId, products: products };
+      try {
+        const response = await fetch("/api/user/wishlist", {
+          method: "POST",
+          headers: { authorization: token },
+          body: JSON.stringify({ product }),
+        });
 
-      callWishlistDispatch(actionType, payload);
+        const { wishlist } = await response.json();
+
+        const payload = wishlist;
+
+        toast.success(`${product.productName} Added To Wishlist`);
+        callWishlistDispatch(actionType, payload);
+      } catch (e) {
+        console.error(e);
+      }
     } else {
-      console.warn("Please login first");
+      toast.error("Please login first");
     }
   };
 
-  const handleRemoveFromWishlist = (actionType, productId) => {
-    const payload = productId;
+  const handleRemoveFromWishlist = async (actionType, product) => {
+    try {
+      const response = await fetch(`/api/user/wishlist/${product._id}`, {
+        method: "DELETE",
+        headers: { authorization: token },
+      });
 
-    callWishlistDispatch(actionType, payload);
+      const { wishlist } = await response.json();
+
+      const payload = wishlist;
+
+      toast.warn(`${product.productName} Removed From Wishlist`);
+      callWishlistDispatch(actionType, payload);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleMoveToWishlist = (actionType, productId, cart) => {

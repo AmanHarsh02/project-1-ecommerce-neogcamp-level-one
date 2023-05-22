@@ -1,6 +1,8 @@
 import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Home,
   Cart,
@@ -12,8 +14,20 @@ import {
   UserProfile,
 } from "./pages/index";
 import { Navbar, ProtectedRoute } from "./Components/index";
+import { useAuth } from "./contexts/AuthContext";
+import { useEffect } from "react";
 
 function App() {
+  const { loggedIn } = useAuth();
+
+  const notify = () => toast.success("Login Successful");
+
+  useEffect(() => {
+    if (loggedIn) {
+      notify();
+    }
+  }, [loggedIn]);
+
   return (
     <div className="App">
       <Navbar />
@@ -54,6 +68,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
+
+      <ToastContainer />
     </div>
   );
 }

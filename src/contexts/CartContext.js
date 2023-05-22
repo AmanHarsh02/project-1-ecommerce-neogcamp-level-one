@@ -1,12 +1,14 @@
 import { createContext, useContext, useReducer } from "react";
 import { cartReducer, initialState } from "../reducers/CartReducer";
 import { useAuth } from "./AuthContext";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
   const { loggedIn } = useAuth();
+  const token = localStorage.getItem("token");
 
   const callCartDispatch = (actionType, payload) => {
     cartDispatch({
@@ -15,26 +17,67 @@ export function CartProvider({ children }) {
     });
   };
 
-  const handleAddToCart = (actionType, productId, products) => {
+  const handleAddToCart = async (actionType, product) => {
     if (loggedIn) {
-      const payload = { productId: productId, products: products };
+      try {
+        const response = await fetch("/api/user/cart", {
+          method: "POST",
+          headers: { authorization: token },
+          body: JSON.stringify({ product }),
+        });
 
-      callCartDispatch(actionType, payload);
+        const { cart } = await response.json();
+
+        const payload = cart;
+
+        toast.success(`${product.productName} Added To Cart`);
+        callCartDispatch(actionType, payload);
+      } catch (e) {
+        console.error(e);
+      }
     } else {
-      console.warn("Please login first");
+      toast.error("Please login first");
     }
   };
 
-  const handleRemoveFromCart = (actionType, productId) => {
-    const payload = productId;
+  const handleRemoveFromCart = async (actionType, product) => {
+    try {
+      const response = await fetch(`/api/user/cart/${product._id}`, {
+        method: "DELETE",
+        headers: { authorization: token },
+      });
 
-    callCartDispatch(actionType, payload);
+      const { cart } = await response.json();
+
+      const payload = cart;
+
+      toast.warn(`${product.productName} Removed From Cart`);
+      callCartDispatch(actionType, payload);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
-  const handleIncreaseOrDecrease = (actionType, productId) => {
-    const payload = productId;
+  const handleIncreaseOrDecrease = async (actionType, product) => {
+    const type = actionType === "INCREASE_ITEM" ? "increase" : "decrease";
 
-    callCartDispatch(actionType, payload);
+    try {
+      const response = await fetch(`/api/user/cart/${product._id}`, {
+        method: "POST",
+        headers: { authorization: token },
+        body: JSON.stringify({ action: { type: type } }),
+      });
+
+      const { cart } = await response.json();
+
+      console.log(response, cart);
+
+      const payload = cart;
+
+      callCartDispatch(actionType, payload);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleMoveToCart = (actionType, productId, wishlist) => {

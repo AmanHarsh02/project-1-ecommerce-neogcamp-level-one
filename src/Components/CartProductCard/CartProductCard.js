@@ -13,8 +13,7 @@ export function CartProductCard({ product }) {
     discountedPrice,
     discountPercent,
     onSale,
-    rating,
-    quantity,
+    qty,
   } = product;
   const { cart, handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
   const { wishlist, handleMoveToWishlist } = useWishlist();
@@ -25,7 +24,7 @@ export function CartProductCard({ product }) {
   const handleWishlistClick = () => {
     if (!presentInWishlist) {
       handleMoveToWishlist("MOVE_TO_WISHLIST", _id, cart);
-      handleRemoveFromCart("REMOVE_FROM_CART", _id);
+      handleRemoveFromCart("REMOVE_FROM_CART", product);
     } else {
       navigate("/wishlist");
     }
@@ -55,16 +54,16 @@ export function CartProductCard({ product }) {
               icon="simple-line-icons:minus"
               color="#5348c7"
               className="increase__decrease__icons"
-              onClick={() => handleIncreaseOrDecrease("DECREASE_ITEM", _id)}
+              onClick={() => handleIncreaseOrDecrease("DECREASE_ITEM", product)}
             />
 
-            <p>{quantity}</p>
+            <p>{qty}</p>
 
             <Icon
               icon="simple-line-icons:plus"
               color="#5348c7"
               className="increase__decrease__icons"
-              onClick={() => handleIncreaseOrDecrease("INCREASE_ITEM", _id)}
+              onClick={() => handleIncreaseOrDecrease("INCREASE_ITEM", product)}
             />
           </div>
         </div>
@@ -72,7 +71,7 @@ export function CartProductCard({ product }) {
         <div className="buttons__container">
           <button
             className="remove__from__cart__btn"
-            onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", _id)}
+            onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", product)}
           >
             Remove From Cart
           </button>

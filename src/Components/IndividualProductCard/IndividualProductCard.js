@@ -33,7 +33,7 @@ export function IndividualProductCard() {
 
   const handleCartClick = () => {
     if (!presentInCart) {
-      handleAddToCart("ADD_TO_CART", productId, products);
+      handleAddToCart("ADD_TO_CART", selectedProduct);
     } else {
       navigate("/cart");
     }
@@ -41,9 +41,9 @@ export function IndividualProductCard() {
 
   const handleWishlistClick = () => {
     if (!presentInWishlist) {
-      handleAddToWishlist("ADD_TO_WISHLIST", _id, products);
+      handleAddToWishlist("ADD_TO_WISHLIST", selectedProduct);
     } else {
-      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
+      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", selectedProduct);
     }
   };
 

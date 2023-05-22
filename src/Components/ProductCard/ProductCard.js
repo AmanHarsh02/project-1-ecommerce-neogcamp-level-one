@@ -37,14 +37,14 @@ export function ProductCard({ product, add, move }) {
   const handleCartClick = () => {
     if (add) {
       if (!presentInCart) {
-        handleAddToCart("ADD_TO_CART", _id, products);
+        handleAddToCart("ADD_TO_CART", product);
       } else {
         navigate("/cart");
       }
     } else {
       if (!presentInCart) {
         handleMoveToCart("MOVE_TO_CART", _id, wishlist);
-        handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
+        handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", product);
       } else {
         navigate("/cart");
       }
@@ -53,9 +53,9 @@ export function ProductCard({ product, add, move }) {
 
   const handleWishlistClick = () => {
     if (!presentInWishlist) {
-      handleAddToWishlist("ADD_TO_WISHLIST", _id, products);
+      handleAddToWishlist("ADD_TO_WISHLIST", product);
     } else {
-      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", _id);
+      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", product);
     }
   };
 
