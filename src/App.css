@@ -11,3 +11,7 @@
   --primary-color: #5348c7;
   --secondary-color: #333333;
 }
+
+.App {
+  position: relative;
+}

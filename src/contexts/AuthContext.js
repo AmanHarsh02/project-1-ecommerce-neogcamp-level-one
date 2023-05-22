@@ -8,6 +8,7 @@ import {
 import { authInitialState, authReducer } from "../reducers/AuthReducer";
 import { useData } from "./DataContext";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 let method = "";
@@ -16,8 +17,15 @@ export function AuthProvider({ children }) {
   const [authState, authDispatch] = useReducer(authReducer, authInitialState);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
-  const { dataDispatch } = useData();
+  const { dataDispatch, setIsLoading } = useData();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userDetails) {
+      method === "login" ? performLogin() : performSignup();
+      setIsLoading(true);
+    }
+  }, [userDetails]);
 
   const requestOptions = {
     method: "POST",
@@ -31,6 +39,7 @@ export function AuthProvider({ children }) {
       const data = await response.json();
 
       if (response.status === 200) {
+        toast.success("Login Successful");
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
         dataDispatch({ type: "SET_USER_DATA", payload: data.foundUser });
@@ -39,7 +48,7 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.error(e);
     } finally {
-      setUserDetails(null);
+      setIsLoading(false);
     }
   };
 
@@ -50,6 +59,7 @@ export function AuthProvider({ children }) {
       const data = await response.json();
 
       if (response.status === 201) {
+        toast.success("Signup Successful");
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
         dataDispatch({ type: "SET_USER_DATA", payload: data.createdUser });
@@ -58,13 +68,9 @@ export function AuthProvider({ children }) {
     } catch (e) {
       console.error(e);
     } finally {
-      setUserDetails(null);
+      setIsLoading(false);
     }
   };
-
-  if (userDetails) {
-    method === "login" ? performLogin() : performSignup();
-  }
 
   const loginValidation = () => {
     if (

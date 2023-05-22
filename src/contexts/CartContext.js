@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { cartReducer, initialState } from "../reducers/CartReducer";
 import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
   const { loggedIn } = useAuth();
+  const [isCartLoading, setIsCartLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   const callCartDispatch = (actionType, payload) => {
@@ -34,8 +35,11 @@ export function CartProvider({ children }) {
         callCartDispatch(actionType, payload);
       } catch (e) {
         console.error(e);
+      } finally {
+        setIsCartLoading(false);
       }
     } else {
+      setIsCartLoading(false);
       toast.error("Please login first");
     }
   };
@@ -55,6 +59,8 @@ export function CartProvider({ children }) {
       callCartDispatch(actionType, payload);
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsCartLoading(false);
     }
   };
 
@@ -86,6 +92,8 @@ export function CartProvider({ children }) {
         handleAddToCart,
         handleRemoveFromCart,
         handleIncreaseOrDecrease,
+        isCartLoading,
+        setIsCartLoading,
       }}
     >
       {children}

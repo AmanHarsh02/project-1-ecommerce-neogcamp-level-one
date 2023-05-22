@@ -11,3 +11,5 @@ export { IndividualProductCard } from "./IndividualProductCard/IndividualProduct
 export { CartProductCard } from "./CartProductCard/CartProductCard";
 export { CartPriceCard } from "./CartPriceCard/CartPriceCard";
 export { TrendingProductCard } from "./TrendingProductCard/TrendingProductCard";
+export { Loader } from "./Loader/Loader";
+export { BtnLoader } from "./BtnLoader/BtnLoader";

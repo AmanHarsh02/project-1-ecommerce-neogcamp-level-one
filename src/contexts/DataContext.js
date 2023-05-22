@@ -12,6 +12,7 @@ const DataContext = createContext();
 export function DataProvider({ children }) {
   const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
   const [isLoading, setIsLoading] = useState(false);
+  const [isBtnLoading, setIsBtnLoading] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -104,6 +105,9 @@ export function DataProvider({ children }) {
         dataDispatch,
         dataState,
         isLoading,
+        setIsLoading,
+        isBtnLoading,
+        setIsBtnLoading,
       }}
     >
       {children}

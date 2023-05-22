@@ -1,7 +1,7 @@
 import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Home,
@@ -13,20 +13,11 @@ import {
   Signup,
   UserProfile,
 } from "./pages/index";
-import { Navbar, ProtectedRoute } from "./Components/index";
-import { useAuth } from "./contexts/AuthContext";
-import { useEffect } from "react";
+import { Loader, Navbar, ProtectedRoute } from "./Components/index";
+import { useData } from "./contexts/DataContext";
 
 function App() {
-  const { loggedIn } = useAuth();
-
-  const notify = () => toast.success("Login Successful");
-
-  useEffect(() => {
-    if (loggedIn) {
-      notify();
-    }
-  }, [loggedIn]);
+  const { isLoading } = useData();
 
   return (
     <div className="App">
@@ -69,7 +60,9 @@ function App() {
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
 
-      <ToastContainer />
+      {isLoading && <Loader />}
+
+      <ToastContainer autoClose={3000} theme="dark" position="bottom-left" />
     </div>
   );
 }

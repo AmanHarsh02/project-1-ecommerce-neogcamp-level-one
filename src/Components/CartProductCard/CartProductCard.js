@@ -3,6 +3,8 @@ import "../CartProductCard/CartProductCard.css";
 import { useCart } from "../../contexts/CartContext";
 import { useWishlist } from "../../contexts/WishlistContext";
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { BtnLoader } from "../BtnLoader/BtnLoader";
 
 export function CartProductCard({ product }) {
   const {
@@ -15,19 +17,42 @@ export function CartProductCard({ product }) {
     onSale,
     qty,
   } = product;
-  const { cart, handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
+  const {
+    handleRemoveFromCart,
+    handleIncreaseOrDecrease,
+    isCartLoading,
+    setIsCartLoading,
+  } = useCart();
+  const [cartBtnLoading, setCartBtnLoading] = useState(false);
+  const [wishlistBtnLoading, setWishlistBtnLoading] = useState(false);
+
   const { wishlist, handleAddToWishlist } = useWishlist();
   const navigate = useNavigate();
 
   const presentInWishlist = wishlist.find((product) => product._id === _id);
 
+  useEffect(() => {
+    if (!isCartLoading) {
+      setCartBtnLoading(false);
+      setWishlistBtnLoading(false);
+    }
+  }, [isCartLoading]);
+
   const handleWishlistClick = () => {
     if (!presentInWishlist) {
+      setWishlistBtnLoading(true);
+      setIsCartLoading(true);
       handleRemoveFromCart("REMOVE_FROM_CART", product);
       handleAddToWishlist("ADD_TO_WISHLIST", product);
     } else {
       navigate("/wishlist");
     }
+  };
+
+  const handleCartClick = () => {
+    setCartBtnLoading(true);
+    setIsCartLoading(true);
+    handleRemoveFromCart("REMOVE_FROM_CART", product);
   };
 
   return (
@@ -75,16 +100,28 @@ export function CartProductCard({ product }) {
         <div className="buttons__container">
           <button
             className="remove__from__cart__btn"
-            onClick={() => handleRemoveFromCart("REMOVE_FROM_CART", product)}
+            onClick={() => handleCartClick()}
+            disabled={cartBtnLoading}
           >
-            Remove From Cart
+            {cartBtnLoading ? (
+              <BtnLoader loading={cartBtnLoading} color={"white"} />
+            ) : (
+              " Remove From Cart"
+            )}
           </button>
 
           <button
             className="move__to__wishlist__btn"
             onClick={() => handleWishlistClick()}
+            disabled={wishlistBtnLoading}
           >
-            {presentInWishlist ? "Go To Wishlist" : "Move To Wishlist"}
+            {wishlistBtnLoading ? (
+              <BtnLoader loading={wishlistBtnLoading} color={"#5348c7"} />
+            ) : presentInWishlist ? (
+              "Go To Wishlist"
+            ) : (
+              "Move To Wishlist"
+            )}
           </button>
         </div>
       </div>

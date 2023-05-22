@@ -4,13 +4,16 @@ import { useData } from "../../contexts/DataContext";
 import { Icon } from "@iconify/react";
 import { useCart } from "../../contexts/CartContext";
 import { useWishlist } from "../../contexts/WishlistContext";
+import { BtnLoader } from "../BtnLoader/BtnLoader";
+import { useEffect, useState } from "react";
 
 export function IndividualProductCard() {
   const { productId } = useParams();
   const { products } = useData();
-  const { cart, handleAddToCart } = useCart();
+  const { cart, handleAddToCart, isCartLoading, setIsCartLoading } = useCart();
   const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
     useWishlist();
+  const [isBtnLoading, setIsBtnLoading] = useState(false);
   const navigate = useNavigate();
 
   const selectedProduct = products.find(({ _id }) => _id === productId);
@@ -31,8 +34,16 @@ export function IndividualProductCard() {
 
   const presentInWishlist = wishlist.find((product) => product._id === _id);
 
+  useEffect(() => {
+    if (!isCartLoading) {
+      setIsBtnLoading(false);
+    }
+  }, [isCartLoading]);
+
   const handleCartClick = () => {
     if (!presentInCart) {
+      setIsBtnLoading(true);
+      setIsCartLoading(true);
       handleAddToCart("ADD_TO_CART", selectedProduct);
     } else {
       navigate("/cart");
@@ -94,8 +105,18 @@ export function IndividualProductCard() {
             <b>Description:</b> {productDescription}
           </p>
 
-          <button id="add__to__cart__btn" onClick={() => handleCartClick()}>
-            {presentInCart ? "Go to Cart" : "Add to Cart"}
+          <button
+            id="add__to__cart__btn"
+            onClick={() => handleCartClick()}
+            disabled={isBtnLoading}
+          >
+            {isBtnLoading ? (
+              <BtnLoader loading={isBtnLoading} color={"white"} />
+            ) : presentInCart ? (
+              "Go to Cart"
+            ) : (
+              "Add to Cart"
+            )}
           </button>
         </div>
       </div>

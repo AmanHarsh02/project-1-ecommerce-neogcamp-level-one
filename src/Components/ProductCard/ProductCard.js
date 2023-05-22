@@ -3,6 +3,9 @@ import "../ProductCard/ProductCard.css";
 import { useNavigate } from "react-router";
 import { useCart } from "../../contexts/CartContext";
 import { useWishlist } from "../../contexts/WishlistContext";
+import { useEffect, useState } from "react";
+import { BtnLoader } from "../BtnLoader/BtnLoader";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function ProductCard({ product, add, move }) {
   const {
@@ -15,14 +18,22 @@ export function ProductCard({ product, add, move }) {
     onSale,
     rating,
   } = product;
-  const { cart, handleAddToCart } = useCart();
+  const { cart, handleAddToCart, isCartLoading, setIsCartLoading } = useCart();
+  const [isBtnLoading, setIsBtnLoading] = useState(false);
   const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
     useWishlist();
+  const { loggedIn } = useAuth();
   const navigate = useNavigate();
 
   const presentInCart = cart.find((product) => product._id === _id);
 
   const presentInWishlist = wishlist.find((product) => product._id === _id);
+
+  useEffect(() => {
+    if (!isCartLoading) {
+      setIsBtnLoading(false);
+    }
+  }, [isCartLoading]);
 
   const handleClick = (e) => {
     const clickedOn = e.target.tagName;
@@ -33,6 +44,13 @@ export function ProductCard({ product, add, move }) {
   };
 
   const handleCartClick = () => {
+    if (!loggedIn) {
+      setIsBtnLoading(false);
+    } else {
+      setIsBtnLoading(true);
+      setIsCartLoading(true);
+    }
+
     if (add) {
       if (!presentInCart) {
         handleAddToCart("ADD_TO_CART", product);
@@ -98,8 +116,15 @@ export function ProductCard({ product, add, move }) {
             <button
               className="add__to__cart__btn"
               onClick={() => handleCartClick()}
+              disabled={isBtnLoading}
             >
-              {presentInCart ? "Go to Cart" : "Add to Cart"}
+              {isBtnLoading ? (
+                <BtnLoader loading={isBtnLoading} color={"#5348c7"} />
+              ) : presentInCart ? (
+                "Go to Cart"
+              ) : (
+                "Add to Cart"
+              )}
             </button>
           )}
 
@@ -107,8 +132,15 @@ export function ProductCard({ product, add, move }) {
             <button
               className="add__to__cart__btn"
               onClick={() => handleCartClick()}
+              disabled={isBtnLoading}
             >
-              {presentInCart ? "Go to Cart" : "  Move to Cart"}
+              {isBtnLoading ? (
+                <BtnLoader loading={isBtnLoading} color={"#5348c7"} />
+              ) : presentInCart ? (
+                "Go to Cart"
+              ) : (
+                "Move to Cart"
+              )}
             </button>
           )}
         </div>
