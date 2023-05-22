@@ -1,12 +1,13 @@
 import { useAuth } from "../../../contexts/AuthContext";
 import "../Login/Login.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function Login() {
   const {
     authState: { email, password },
     authDispatch,
     loginValidation,
+    setUserDetails,
   } = useAuth();
 
   const location = useLocation();
@@ -17,6 +18,11 @@ export function Login() {
       payload: location?.state?.from?.pathname,
     });
     loginValidation();
+  };
+
+  const handleGuestLogin = () => {
+    authDispatch({ type: "SET_EMAIL", payload: "amanharsh0399@gmail.com" });
+    authDispatch({ type: "SET_PASSWORD", payload: "amanharsh" });
   };
 
   return (
@@ -56,6 +62,8 @@ export function Login() {
         </label>
 
         <button onClick={handleLogin}>Login</button>
+
+        <p onClick={handleGuestLogin}>Set Test Credentials</p>
 
         <Link to="/signup">Create New Account ▶</Link>
       </div>

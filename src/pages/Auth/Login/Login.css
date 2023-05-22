@@ -43,6 +43,12 @@ a {
   border-radius: 0.2rem;
 }
 
+.login__card > p {
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .checkbox {
   display: flex;
   gap: 0.5rem;
