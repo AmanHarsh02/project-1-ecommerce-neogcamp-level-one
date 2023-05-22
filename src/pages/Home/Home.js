@@ -5,9 +5,13 @@ import {
   TrendingBrands,
   BrandFeatures,
   Footer,
+  TrendingProductCard,
 } from "../../Components/index";
+import { useData } from "../../contexts/DataContext";
 
 export function Home() {
+  const { products } = useData();
+
   return (
     <div className="home__container">
       <section className="hero__section">
@@ -27,7 +31,18 @@ export function Home() {
       </section>
 
       <section className="featured__section">
-        <div className="content__container"></div>
+        <div className="content__container">
+          <h2 className="featured__section__heading">Trending Products</h2>
+          <div className="trending__products__container">
+            {products.map((product) => {
+              if (product.trending) {
+                return (
+                  <TrendingProductCard product={product} key={product._id} />
+                );
+              }
+            })}
+          </div>
+        </div>
       </section>
 
       <section className="trending__brands__section">

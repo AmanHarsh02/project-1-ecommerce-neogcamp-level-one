@@ -10,3 +10,4 @@ export { ProductCard } from "./ProductCard/ProductCard";
 export { IndividualProductCard } from "./IndividualProductCard/IndividualProductCard";
 export { CartProductCard } from "./CartProductCard/CartProductCard";
 export { CartPriceCard } from "./CartPriceCard/CartPriceCard";
+export { TrendingProductCard } from "./TrendingProductCard/TrendingProductCard";
