@@ -23,7 +23,7 @@
   border-radius: 0.4rem;
 }
 
-.product__name__container {
+.trending__product__name__container {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -35,7 +35,7 @@
   visibility: hidden;
 }
 
-.trending__product__img__container:hover .product__name__container {
+.trending__product__img__container:hover .trending__product__name__container {
   opacity: 0.8;
   visibility: visible;
 }

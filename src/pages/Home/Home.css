@@ -56,6 +56,10 @@
     width: 60%;
   }
 
+  .featured__section {
+    overflow-x: hidden;
+  }
+
   .trending__products__container {
     flex-wrap: wrap;
     justify-content: flex-end;

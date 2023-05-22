@@ -8,7 +8,9 @@ export function TrendingProductCard({ product }) {
       <Link to={`/product/${_id}`}>
         <div className="trending__product__img__container">
           <img src={productImage} alt={productName} />
-          <div className="product__name__container">{productName}</div>
+          <div className="trending__product__name__container">
+            {productName}
+          </div>
         </div>
       </Link>
     </div>
