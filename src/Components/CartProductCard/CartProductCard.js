@@ -16,15 +16,15 @@ export function CartProductCard({ product }) {
     qty,
   } = product;
   const { cart, handleRemoveFromCart, handleIncreaseOrDecrease } = useCart();
-  const { wishlist, handleMoveToWishlist } = useWishlist();
+  const { wishlist, handleAddToWishlist } = useWishlist();
   const navigate = useNavigate();
 
   const presentInWishlist = wishlist.find((product) => product._id === _id);
 
   const handleWishlistClick = () => {
     if (!presentInWishlist) {
-      handleMoveToWishlist("MOVE_TO_WISHLIST", _id, cart);
       handleRemoveFromCart("REMOVE_FROM_CART", product);
+      handleAddToWishlist("ADD_TO_WISHLIST", product);
     } else {
       navigate("/wishlist");
     }
@@ -54,7 +54,11 @@ export function CartProductCard({ product }) {
               icon="simple-line-icons:minus"
               color="#5348c7"
               className="increase__decrease__icons"
-              onClick={() => handleIncreaseOrDecrease("DECREASE_ITEM", product)}
+              onClick={() =>
+                qty > 1
+                  ? handleIncreaseOrDecrease("DECREASE_ITEM", product)
+                  : handleRemoveFromCart("REMOVE_FROM_CART", product)
+              }
             />
 
             <p>{qty}</p>

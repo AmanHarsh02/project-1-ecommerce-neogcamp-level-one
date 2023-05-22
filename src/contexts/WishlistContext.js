@@ -62,12 +62,6 @@ export function WishlistProvider({ children }) {
     }
   };
 
-  const handleMoveToWishlist = (actionType, productId, cart) => {
-    const payload = { productId: productId, cart: cart };
-
-    callWishlistDispatch(actionType, payload, cart);
-  };
-
   return (
     <WishlistContext.Provider
       value={{
@@ -75,7 +69,6 @@ export function WishlistProvider({ children }) {
         wishlistDispatch,
         handleAddToWishlist,
         handleRemoveFromWishlist,
-        handleMoveToWishlist,
       }}
     >
       {children}

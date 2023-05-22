@@ -14,21 +14,7 @@ export const wishlistReducer = (state, action) => {
 
       return { ...state, wishlist: newWishlist };
     }
-    case "MOVE_TO_WISHLIST": {
-      const newWishlist = [...state.wishlist];
-      const productId = action.payload.productId;
-      const cart = action.payload.cart;
 
-      const selectedProduct = cart.find(({ _id }) => _id === productId);
-
-      const foundProduct = newWishlist.find(({ _id }) => _id === productId);
-
-      if (!foundProduct) {
-        newWishlist.push(selectedProduct);
-      }
-
-      return { ...state, wishlist: newWishlist };
-    }
     default:
       return { ...state };
   }

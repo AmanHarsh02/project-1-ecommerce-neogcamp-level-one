@@ -2,7 +2,6 @@ import { Icon } from "@iconify/react";
 import "../ProductCard/ProductCard.css";
 import { useNavigate } from "react-router";
 import { useCart } from "../../contexts/CartContext";
-import { useData } from "../../contexts/DataContext";
 import { useWishlist } from "../../contexts/WishlistContext";
 
 export function ProductCard({ product, add, move }) {
@@ -16,8 +15,7 @@ export function ProductCard({ product, add, move }) {
     onSale,
     rating,
   } = product;
-  const { products } = useData();
-  const { cart, handleAddToCart, handleMoveToCart } = useCart();
+  const { cart, handleAddToCart } = useCart();
   const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
     useWishlist();
   const navigate = useNavigate();
@@ -43,8 +41,8 @@ export function ProductCard({ product, add, move }) {
       }
     } else {
       if (!presentInCart) {
-        handleMoveToCart("MOVE_TO_CART", _id, wishlist);
         handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", product);
+        handleAddToCart("ADD_TO_CART", product);
       } else {
         navigate("/cart");
       }

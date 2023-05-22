@@ -24,22 +24,6 @@ export const cartReducer = (state, action) => {
 
       return { ...state, cart: newCart };
     }
-    case "MOVE_TO_CART": {
-      const newCart = [...state.cart];
-      const productId = action.payload.productId;
-      const wishlist = action.payload.wishlist;
-
-      const selectedProduct = wishlist.find(({ _id }) => _id === productId);
-
-      const foundProduct = newCart.find(({ _id }) => _id === productId);
-
-      if (!foundProduct) {
-        selectedProduct.quantity = 1;
-        newCart.push(selectedProduct);
-      }
-
-      return { ...state, cart: newCart };
-    }
 
     default:
       return { ...state };

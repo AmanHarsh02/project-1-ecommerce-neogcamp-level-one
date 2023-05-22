@@ -59,7 +59,7 @@ export function CartProvider({ children }) {
   };
 
   const handleIncreaseOrDecrease = async (actionType, product) => {
-    const type = actionType === "INCREASE_ITEM" ? "increase" : "decrease";
+    const type = actionType === "INCREASE_ITEM" ? "increment" : "decrement";
 
     try {
       const response = await fetch(`/api/user/cart/${product._id}`, {
@@ -70,20 +70,12 @@ export function CartProvider({ children }) {
 
       const { cart } = await response.json();
 
-      console.log(response, cart);
-
       const payload = cart;
 
       callCartDispatch(actionType, payload);
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const handleMoveToCart = (actionType, productId, wishlist) => {
-    const payload = { productId: productId, wishlist: wishlist };
-
-    callCartDispatch(actionType, payload, wishlist);
   };
 
   return (
@@ -94,7 +86,6 @@ export function CartProvider({ children }) {
         handleAddToCart,
         handleRemoveFromCart,
         handleIncreaseOrDecrease,
-        handleMoveToCart,
       }}
     >
       {children}

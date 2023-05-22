@@ -4,14 +4,13 @@ export function CartPriceCard({ cart }) {
   const deliveryCharges = cart.length >= 1 ? 500 : 0;
 
   const totalPrice = cart.reduce(
-    (total, { discountedPrice, quantity }) =>
-      total + discountedPrice * quantity,
+    (total, { discountedPrice, qty }) => total + discountedPrice * qty,
     0
   );
 
   const totalDiscount = cart.reduce(
-    (total, { price, discountedPrice, quantity }) =>
-      total + (price - discountedPrice) * quantity,
+    (total, { price, discountedPrice, qty }) =>
+      total + (price - discountedPrice) * qty,
     0
   );
 
