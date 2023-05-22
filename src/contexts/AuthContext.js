@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useReducer,
+  useEffect,
+} from "react";
 import { authInitialState, authReducer } from "../reducers/AuthReducer";
 import { useData } from "./DataContext";
 import { useNavigate } from "react-router";
@@ -47,7 +53,6 @@ export function AuthProvider({ children }) {
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
         dataDispatch({ type: "SET_USER_DATA", payload: data.createdUser });
-        console.log(response, data.createdUser);
         navigate(authState.location);
       }
     } catch (e) {
