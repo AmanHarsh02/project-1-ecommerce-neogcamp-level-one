@@ -1,0 +1,27 @@
+.profile__tab__headings__container {
+  display: flex;
+  justify-content: space-evenly;
+  width: max-content;
+  max-width: 60rem;
+  margin: auto;
+}
+
+.profile__tab__headings {
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid lightgray;
+  padding: 0.5rem 4rem;
+  background-color: white;
+  font-size: 1.2rem;
+}
+
+.profile__tab__headings:hover {
+  box-shadow: 0px 2px 5px lightgray;
+  border-bottom: 2px solid black;
+  transition: 0.1s ease-in;
+}
+
+.tab__active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}

@@ -1,0 +1,25 @@
+.user__profile__container {
+  margin: 1rem;
+}
+
+.profile__data__container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 60rem;
+}
+
+.user__greeting {
+  text-align: center;
+  max-width: 60rem;
+  width: 100%;
+  align-self: center;
+  padding: 2rem;
+  color: white;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    rgba(188, 148, 255)
+  );
+  border-radius: 1rem;
+}

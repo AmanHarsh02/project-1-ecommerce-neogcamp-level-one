@@ -1,0 +1,19 @@
+.profile__details__container {
+  padding: 4rem;
+  border-top: 1px solid lightgray;
+}
+
+.profile__details__container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: max-content;
+  padding: 2rem;
+  margin: auto;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 5px lightgray;
+}
+
+b {
+  color: var(--primary-color);
+}

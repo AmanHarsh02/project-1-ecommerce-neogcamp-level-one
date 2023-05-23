@@ -13,3 +13,5 @@ export { CartPriceCard } from "./CartPriceCard/CartPriceCard";
 export { TrendingProductCard } from "./TrendingProductCard/TrendingProductCard";
 export { Loader } from "./Loader/Loader";
 export { BtnLoader } from "./BtnLoader/BtnLoader";
+export { ProfileTab } from "./ProfileTab/ProfileTab";
+export { ProfileDetails } from "./ProfileDetails/ProfileDetails";
