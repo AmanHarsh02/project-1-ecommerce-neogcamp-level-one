@@ -8,6 +8,10 @@ export function Carousel() {
   const [image, setImage] = useState(0);
   const [banner, setBanner] = useState(banner_0);
 
+  setTimeout(() => {
+    nextImg();
+  }, 4000);
+
   const banners = ["1", "2", "3"];
 
   const getSourceImg = () => {
@@ -31,13 +35,39 @@ export function Carousel() {
     document.documentElement.scrollTop = 0;
   };
 
+  const prevImg = () => {
+    switch (image) {
+      case 0:
+        return setImage(2);
+      case 1:
+        return setImage(0);
+      case 2:
+        return setImage(1);
+      default:
+        return setImage(0);
+    }
+  };
+
+  const nextImg = () => {
+    switch (image) {
+      case 0:
+        return setImage(1);
+      case 1:
+        return setImage(2);
+      case 2:
+        return setImage(0);
+      default:
+        return setImage(0);
+    }
+  };
+
   return (
     <div className="carousal__container">
       <div className="img__container">
         <Link to="/products" onClick={handleClick}>
           <img src={banner} alt="banner" />
         </Link>
-        <div className="carousal__navigate__btn right">
+        <div className="carousal__navigate__btn right" onClick={nextImg}>
           <Icon
             icon="ic:round-keyboard-arrow-right"
             color="white"
@@ -45,7 +75,7 @@ export function Carousel() {
           />
         </div>
 
-        <div className="carousal__navigate__btn left">
+        <div className="carousal__navigate__btn left" onClick={prevImg}>
           <Icon
             icon="material-symbols:chevron-left-rounded"
             color="white"

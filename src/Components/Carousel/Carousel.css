@@ -4,14 +4,16 @@
 
 .carousal__container {
   position: relative;
-  margin: 4rem 0rem;
+  margin: 2rem 0rem;
 }
 
 .img__container img {
   display: block;
   width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  min-height: 40vh;
+  max-height: 80vh;
+  border-radius: 0.4rem;
+  object-fit: fill;
 }
 
 .carousal__navigate__btn {
@@ -54,22 +56,26 @@
   top: -20px;
 }
 
-@media screen and (min-width: 768px) {
-  .carousal__navigate__btn {
-    display: block;
-    cursor: pointer;
-    background-color: black;
-    padding: 0.3rem 0rem 0rem 0rem;
-    border-radius: 0.2rem;
-  }
-  .carousal__navigate__btn.left {
-    position: absolute;
-    left: -20px;
-    top: 48%;
-  }
-  .carousal__navigate__btn.right {
-    position: absolute;
-    right: -20px;
-    top: 48%;
+.carousal__navigate__btn {
+  display: block;
+  cursor: pointer;
+  background-color: black;
+  padding: 0.3rem 0rem 0rem 0rem;
+  border-radius: 0.2rem;
+}
+.carousal__navigate__btn.left {
+  position: absolute;
+  left: -20px;
+  top: 48%;
+}
+.carousal__navigate__btn.right {
+  position: absolute;
+  right: -20px;
+  top: 48%;
+}
+
+@media screen and (min-width: 1024px) {
+  .carousal__container {
+    margin: 4rem 0rem;
   }
 }
