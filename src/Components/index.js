@@ -15,3 +15,4 @@ export { Loader } from "./Loader/Loader";
 export { BtnLoader } from "./BtnLoader/BtnLoader";
 export { ProfileTab } from "./ProfileTab/ProfileTab";
 export { ProfileDetails } from "./ProfileDetails/ProfileDetails";
+export { UserAddresses } from "./UserAddresses/UserAddresses";

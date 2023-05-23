@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../ProfileTab/ProfileTab.css";
 import { ProfileDetails } from "../ProfileDetails/ProfileDetails";
+import { UserAddresses } from "../UserAddresses/UserAddresses";
 
 export function ProfileTab({ user }) {
   const [selectedTab, setSelectedTab] = useState("profile");
@@ -9,6 +10,9 @@ export function ProfileTab({ user }) {
     switch (selectedTab) {
       case "profile":
         return <ProfileDetails user={user} />;
+
+      case "address":
+        return <UserAddresses />;
 
       default:
         return <ProfileDetails user={user} />;
