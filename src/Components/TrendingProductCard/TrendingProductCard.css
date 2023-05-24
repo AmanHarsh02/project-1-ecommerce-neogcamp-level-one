@@ -13,6 +13,8 @@
   max-height: 300px;
   background-color: white;
   border-radius: 0.4rem;
+  padding: 0.5rem;
+  overflow: hidden;
 }
 
 .trending__product__img__container > img {
@@ -23,9 +25,16 @@
   border-radius: 0.4rem;
 }
 
+.trending__product__img__container img:hover {
+  transform: scale(1.1, 1.1);
+  transition: 0.1s ease-in;
+}
+
 .trending__product__name__container {
   position: absolute;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   color: white;
   background-color: var(--secondary-color);

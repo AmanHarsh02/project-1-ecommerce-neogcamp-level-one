@@ -19,6 +19,11 @@
   height: 0;
   padding-bottom: 100%; /* Maintain a square aspect ratio */
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.category__img__container:hover {
+  box-shadow: 0px 0px 20px 5px lightgray;
 }
 
 .category__img__container img {
@@ -27,8 +32,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the container */
+  object-fit: cover;
   border-radius: 50%;
+}
+
+.category__img__container img:hover {
+  transform: scale(1.1, 1.1);
+  transition: 0.1s ease-in;
 }
 
 @media screen and (min-width: 480px) {
