@@ -1,6 +1,7 @@
 .profile__details__container {
   padding: 4rem 0rem;
   border-top: 1px solid lightgray;
+  color: var(--secondary-color);
 }
 
 .profile__details__container > div {

@@ -2,12 +2,12 @@ export const initialState = {
   user: {},
   products: [],
   categories: [],
-  address: [],
   searchValue: "",
   sortMethod: "",
   ratingValue: "",
   priceRange: "",
   selectedCategory: [],
+  addresses: [],
 };
 
 export const dataReducer = (state, action) => {
@@ -53,6 +53,31 @@ export const dataReducer = (state, action) => {
         ratingValue: "",
         priceRange: "",
       };
+    case "SET_DEFAULT_ADDRESS":
+      return { ...state, addresses: [action.payload] };
+    case "ADD_ADDRESS":
+      return { ...state, addresses: [...state.addresses, action.payload] };
+    case "DELETE_ADDRESS": {
+      const deletedAddress = action.payload;
+
+      const newAddresses = state.addresses.filter(
+        ({ id }) => id !== deletedAddress.id
+      );
+
+      return { ...state, addresses: newAddresses };
+    }
+    case "UPDATE_ADDRESS": {
+      const updatedAddress = action.payload;
+
+      const newAddresses = state.addresses.map((address) => {
+        if (address.id === updatedAddress.id) {
+          address = { ...updatedAddress };
+        }
+        return address;
+      });
+
+      return { ...state, addresses: newAddresses };
+    }
     default:
       return { ...state };
   }

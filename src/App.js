@@ -62,7 +62,7 @@ function App() {
 
       {isLoading && <Loader />}
 
-      <ToastContainer autoClose={3000} theme="dark" position="bottom-left" />
+      <ToastContainer autoClose={3000} theme="colored" position="bottom-left" />
     </div>
   );
 }

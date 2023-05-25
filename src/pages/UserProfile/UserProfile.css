@@ -1,5 +1,7 @@
 .user__profile__container {
-  margin: 2rem 1rem;
+  margin: 2rem 1rem 0rem 1rem;
+  color: var(--secondary-color);
+  min-height: 90vh;
 }
 
 .profile__data__container {

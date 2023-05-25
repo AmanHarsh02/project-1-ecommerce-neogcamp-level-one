@@ -18,6 +18,15 @@ export const authReducer = (state, action) => {
       return { ...state, lastName: action.payload };
     case "SET_LOCATION":
       return { ...state, location: action.payload ?? "/" };
+    case "LOG_OUT":
+      return {
+        ...state,
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        location: "",
+      };
     default:
       return { ...state };
   }

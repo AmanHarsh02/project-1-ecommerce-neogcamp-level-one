@@ -13,6 +13,17 @@ import { toast } from "react-toastify";
 const AuthContext = createContext();
 let method = "";
 
+const defaultAddress = {
+  id: 1,
+  name: "Aman Harsh",
+  houseNo: "Angela 1201, Arihant Adita",
+  city: "Jodhpur",
+  state: "Rajasthan",
+  country: "India",
+  zip: "342001",
+  phoneNo: "8080808080",
+};
+
 export function AuthProvider({ children }) {
   const [authState, authDispatch] = useReducer(authReducer, authInitialState);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -43,6 +54,7 @@ export function AuthProvider({ children }) {
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
         dataDispatch({ type: "SET_USER_DATA", payload: data.foundUser });
+        dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
         navigate(authState.location);
       }
     } catch (e) {
@@ -63,6 +75,7 @@ export function AuthProvider({ children }) {
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
         dataDispatch({ type: "SET_USER_DATA", payload: data.createdUser });
+        dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
         navigate(authState.location);
       }
     } catch (e) {
@@ -77,17 +90,17 @@ export function AuthProvider({ children }) {
       authState.email.trim().length <= 0 &&
       authState.password.trim().length <= 0
     ) {
-      return console.error("Email & Password cannot be empty");
+      return toast.error("Email & Password cannot be empty");
     } else if (authState.email.trim().length <= 0) {
-      return console.error("Email cannot be empty");
+      return toast.error("Email cannot be empty");
     } else if (authState.password.trim().length <= 0) {
-      return console.error("Password cannot be empty");
+      return toast.error("Password cannot be empty");
     }
 
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
 
     if (!regex.test(authState.email)) {
-      return console.error("Invalid email, please enter a valid email address");
+      return toast.error("Invalid email, please enter a valid email address");
     }
 
     method = "login";
@@ -101,13 +114,13 @@ export function AuthProvider({ children }) {
       authState.firstName.trim().length <= 0 ||
       authState.lastName.trim().length <= 0
     ) {
-      return console.error("Email & Password cannot be empty");
+      return toast.error("Email & Password cannot be empty");
     }
 
     const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
 
     if (!regex.test(authState.email)) {
-      return console.error("Invalid email, please enter a valid email address");
+      return toast.error("Invalid email, please enter a valid email address");
     }
 
     method = "signup";
@@ -126,6 +139,7 @@ export function AuthProvider({ children }) {
         authDispatch,
         setUserDetails,
         loggedIn,
+        setLoggedIn,
         loginValidation,
         signupValidation,
       }}

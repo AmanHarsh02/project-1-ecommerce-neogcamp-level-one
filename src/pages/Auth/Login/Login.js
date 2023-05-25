@@ -7,7 +7,6 @@ export function Login() {
     authState: { email, password },
     authDispatch,
     loginValidation,
-    setUserDetails,
   } = useAuth();
 
   const location = useLocation();

@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { useData } from "./DataContext";
 import { useAuth } from "./AuthContext";
 import { initialState, wishlistReducer } from "../reducers/WishlistReducer";
@@ -12,6 +12,7 @@ export function WishlistProvider({ children }) {
     initialState
   );
   const { loggedIn } = useAuth();
+  const [isWishlistLoading, setIsWishlistLoading] = useState(false);
   const token = localStorage.getItem("token");
 
   const callWishlistDispatch = (actionType, payload) => {
@@ -38,8 +39,11 @@ export function WishlistProvider({ children }) {
         callWishlistDispatch(actionType, payload);
       } catch (e) {
         console.error(e);
+      } finally {
+        setIsWishlistLoading(false);
       }
     } else {
+      setIsWishlistLoading(false);
       toast.error("Please login first");
     }
   };
@@ -59,6 +63,8 @@ export function WishlistProvider({ children }) {
       callWishlistDispatch(actionType, payload);
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsWishlistLoading(false);
     }
   };
 
@@ -69,6 +75,8 @@ export function WishlistProvider({ children }) {
         wishlistDispatch,
         handleAddToWishlist,
         handleRemoveFromWishlist,
+        isWishlistLoading,
+        setIsWishlistLoading,
       }}
     >
       {children}

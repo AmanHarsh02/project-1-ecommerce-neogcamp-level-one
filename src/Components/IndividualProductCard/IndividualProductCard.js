@@ -6,14 +6,21 @@ import { useCart } from "../../contexts/CartContext";
 import { useWishlist } from "../../contexts/WishlistContext";
 import { BtnLoader } from "../BtnLoader/BtnLoader";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function IndividualProductCard() {
   const { productId } = useParams();
   const { products } = useData();
   const { cart, handleAddToCart, isCartLoading, setIsCartLoading } = useCart();
-  const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
-    useWishlist();
+  const {
+    wishlist,
+    handleAddToWishlist,
+    handleRemoveFromWishlist,
+    isWishlistLoading,
+    setIsWishlistLoading,
+  } = useWishlist();
   const [isBtnLoading, setIsBtnLoading] = useState(false);
+  const { loggedIn } = useAuth();
   const navigate = useNavigate();
 
   const selectedProduct = products.find(({ _id }) => _id === productId);
@@ -41,9 +48,13 @@ export function IndividualProductCard() {
   }, [isCartLoading]);
 
   const handleCartClick = () => {
-    if (!presentInCart) {
+    if (!loggedIn) {
+      setIsBtnLoading(false);
+    } else {
       setIsBtnLoading(true);
       setIsCartLoading(true);
+    }
+    if (!presentInCart) {
       handleAddToCart("ADD_TO_CART", selectedProduct);
     } else {
       navigate("/cart");
@@ -51,6 +62,9 @@ export function IndividualProductCard() {
   };
 
   const handleWishlistClick = () => {
+    if (loggedIn) {
+      setIsWishlistLoading(true);
+    }
     if (!presentInWishlist) {
       handleAddToWishlist("ADD_TO_WISHLIST", selectedProduct);
     } else {
@@ -67,7 +81,10 @@ export function IndividualProductCard() {
 
             {onSale && <div id="discount__badge">{discountPercent}% Off</div>}
 
-            <div id="wishlist__icon" onClick={() => handleWishlistClick()}>
+            <div
+              id="wishlist__icon"
+              onClick={() => !isWishlistLoading && handleWishlistClick()}
+            >
               {presentInWishlist ? (
                 <Icon icon="mdi:cards-heart" color="red" height={24} />
               ) : (

@@ -16,4 +16,7 @@ export { BtnLoader } from "./BtnLoader/BtnLoader";
 export { ProfileTab } from "./ProfileTab/ProfileTab";
 export { ProfileDetails } from "./ProfileDetails/ProfileDetails";
 export { UserAddresses } from "./UserAddresses/UserAddresses";
+export { AddressCard } from "./AddressCard/AddressCard";
 export { FiltersModal } from "./FiltersModal/FiltersModal";
+export { AddressModal } from "./AddressModal/AddressModal";
+export { Settings } from "./Settings/Settings";

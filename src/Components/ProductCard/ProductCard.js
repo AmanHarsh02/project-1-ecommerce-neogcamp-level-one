@@ -20,8 +20,13 @@ export function ProductCard({ product, add, move }) {
   } = product;
   const { cart, handleAddToCart, isCartLoading, setIsCartLoading } = useCart();
   const [isBtnLoading, setIsBtnLoading] = useState(false);
-  const { wishlist, handleAddToWishlist, handleRemoveFromWishlist } =
-    useWishlist();
+  const {
+    wishlist,
+    handleAddToWishlist,
+    handleRemoveFromWishlist,
+    isWishlistLoading,
+    setIsWishlistLoading,
+  } = useWishlist();
   const { loggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -33,7 +38,7 @@ export function ProductCard({ product, add, move }) {
     if (!isCartLoading) {
       setIsBtnLoading(false);
     }
-  }, [isCartLoading]);
+  }, [isCartLoading, isWishlistLoading]);
 
   const handleClick = (e) => {
     const clickedOn = e.target.tagName;
@@ -68,6 +73,10 @@ export function ProductCard({ product, add, move }) {
   };
 
   const handleWishlistClick = () => {
+    if (loggedIn) {
+      setIsWishlistLoading(true);
+    }
+
     if (!presentInWishlist) {
       handleAddToWishlist("ADD_TO_WISHLIST", product);
     } else {
@@ -79,12 +88,13 @@ export function ProductCard({ product, add, move }) {
     <div className="product__card__container">
       <div className="image__container" onClick={(e) => handleClick(e)}>
         <img src={productImage} alt={productName} />
-
         {onSale && (
           <div className="discount__badge">{discountPercent}% Off</div>
         )}
-
-        <div className="wishlist__icon" onClick={() => handleWishlistClick()}>
+        <div
+          className="wishlist__icon"
+          onClick={() => !isWishlistLoading && handleWishlistClick()}
+        >
           {presentInWishlist ? (
             <Icon icon="mdi:cards-heart" color="red" height={24} />
           ) : (

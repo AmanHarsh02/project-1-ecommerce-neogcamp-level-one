@@ -96,6 +96,7 @@ export function DataProvider({ children }) {
         products: dataState.products,
         categories: dataState.categories,
         user: dataState.user,
+        addresses: dataState.addresses,
         searchValue: dataState.searchValue,
         priceRange: dataState.priceRange,
         selectedCategory: dataState.selectedCategory,

@@ -3,7 +3,7 @@ import { useData } from "../../contexts/DataContext";
 import "../UserProfile/UserProfile.css";
 
 export function UserProfile() {
-  const { user } = useData();
+  const { user, addresses } = useData();
 
   return (
     <div className="user__profile__container">
