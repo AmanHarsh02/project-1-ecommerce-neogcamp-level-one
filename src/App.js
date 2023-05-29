@@ -12,6 +12,7 @@ import {
   Login,
   Signup,
   UserProfile,
+  Error,
 } from "./pages/index";
 import { Loader, Navbar, ProtectedRoute } from "./Components/index";
 import { useData } from "./contexts/DataContext";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
         <Route path="/product/:productId" element={<IndividualProduct />} />
+        <Route path="*" element={<Error />} />
 
         <Route
           path="/cart"

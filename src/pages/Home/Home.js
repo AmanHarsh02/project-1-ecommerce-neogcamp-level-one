@@ -8,9 +8,12 @@ import {
   TrendingProductCard,
 } from "../../Components/index";
 import { useData } from "../../contexts/DataContext";
+import { useEffect } from "react";
 
 export function Home() {
-  const { products } = useData();
+  const { products, setTitle } = useData();
+
+  useEffect(() => setTitle("Home"), []);
 
   return (
     <div className="home__container">

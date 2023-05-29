@@ -3,10 +3,13 @@ import { Filters, FiltersModal, ProductCard } from "../../Components";
 import { useData } from "../../contexts/DataContext";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export function ProductListing() {
-  const { filteredProducts } = useData();
+  const { filteredProducts, setTitle } = useData();
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => setTitle("Products"), []);
 
   return (
     <div className="products__listing__container">

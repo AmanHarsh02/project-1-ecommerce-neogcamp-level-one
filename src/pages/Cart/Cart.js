@@ -2,9 +2,14 @@ import "../Cart/Cart.css";
 import { useCart } from "../../contexts/CartContext";
 import { CartPriceCard, CartProductCard } from "../../Components";
 import { empty_cart_illustration } from "../../assets/index";
+import { useData } from "../../contexts/DataContext";
+import { useEffect } from "react";
 
 export function Cart() {
   const { cart } = useCart();
+  const { setTitle } = useData();
+
+  useEffect(() => setTitle("Cart"), []);
 
   return (
     <div className="cart__page__container">

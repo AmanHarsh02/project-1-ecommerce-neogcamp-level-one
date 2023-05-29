@@ -6,3 +6,4 @@ export { IndividualProduct } from "./IndividualProduct/IndividualProduct";
 export { Login } from "./Auth/Login/Login";
 export { Signup } from "./Auth/Signup/Signup";
 export { UserProfile } from "./UserProfile/UserProfile";
+export { Error } from "./Error/Error";

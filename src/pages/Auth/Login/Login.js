@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useData } from "../../../contexts/DataContext";
 import "../Login/Login.css";
 import { Link, useLocation } from "react-router-dom";
 
@@ -8,6 +10,10 @@ export function Login() {
     authDispatch,
     loginValidation,
   } = useAuth();
+
+  const { setTitle } = useData();
+
+  useEffect(() => setTitle("Login"), []);
 
   const location = useLocation();
 

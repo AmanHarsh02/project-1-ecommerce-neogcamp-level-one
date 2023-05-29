@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useData } from "../../../contexts/DataContext";
 import "../Signup/Signup.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -8,6 +10,10 @@ export function Signup() {
     authDispatch,
     signupValidation,
   } = useAuth();
+
+  const { setTitle } = useData();
+
+  useEffect(() => setTitle("Signup"), []);
 
   const location = useLocation();
 

@@ -8,6 +8,7 @@ export const initialState = {
   priceRange: "",
   selectedCategory: [],
   addresses: [],
+  selectedAddress: {},
 };
 
 export const dataReducer = (state, action) => {
@@ -78,6 +79,8 @@ export const dataReducer = (state, action) => {
 
       return { ...state, addresses: newAddresses };
     }
+    case "SET_SELECTED_ADDRESS":
+      return { ...state, selectedAddress: action.payload };
     default:
       return { ...state };
   }

@@ -30,6 +30,16 @@ export function AuthProvider({ children }) {
   const [userDetails, setUserDetails] = useState(null);
   const { dataDispatch, setIsLoading } = useData();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  useEffect(() => {
+    if (token) {
+      setLoggedIn(true);
+      dataDispatch({ type: "SET_USER_DATA", payload: JSON.parse(user) });
+      dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
+    }
+  }, []);
 
   useEffect(() => {
     if (userDetails) {
@@ -53,6 +63,8 @@ export function AuthProvider({ children }) {
         toast.success("Login Successful");
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
+        localStorage.setItem("user", JSON.stringify(data.foundUser));
+        console.log(data.foundUser);
         dataDispatch({ type: "SET_USER_DATA", payload: data.foundUser });
         dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
         navigate(authState.location);
@@ -74,6 +86,8 @@ export function AuthProvider({ children }) {
         toast.success("Signup Successful");
         setLoggedIn(true);
         localStorage.setItem("token", data.encodedToken);
+        localStorage.setItem("user", JSON.stringify(data.createdUser));
+        console.log(data.foundUser);
         dataDispatch({ type: "SET_USER_DATA", payload: data.createdUser });
         dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
         navigate(authState.location);

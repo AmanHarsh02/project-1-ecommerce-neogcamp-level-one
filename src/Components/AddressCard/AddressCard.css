@@ -12,6 +12,12 @@
   color: #7d7d7d;
 }
 
+.address__label {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
 .btns__container {
   display: flex;
   gap: 0.5rem;

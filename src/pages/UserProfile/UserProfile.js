@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { ProfileTab } from "../../Components";
 import { useData } from "../../contexts/DataContext";
 import "../UserProfile/UserProfile.css";
 
 export function UserProfile() {
-  const { user, addresses } = useData();
+  const { user, setTitle } = useData();
+
+  useEffect(() => setTitle("Profile"), []);
 
   return (
     <div className="user__profile__container">

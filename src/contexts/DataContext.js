@@ -90,6 +90,10 @@ export function DataProvider({ children }) {
 
   const filteredProducts = applyFilters(dataState.products);
 
+  const setTitle = (title) => {
+    document.title = `${title} | SnapShop`;
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -102,6 +106,7 @@ export function DataProvider({ children }) {
         selectedCategory: dataState.selectedCategory,
         ratingValue: dataState.ratingValue,
         sortMethod: dataState.sortMethod,
+        selectedAddress: dataState.selectedAddress,
         filteredProducts,
         dataDispatch,
         dataState,
@@ -109,6 +114,7 @@ export function DataProvider({ children }) {
         setIsLoading,
         isBtnLoading,
         setIsBtnLoading,
+        setTitle,
       }}
     >
       {children}

@@ -2,9 +2,14 @@ import "../Wishlist/Wishlist.css";
 import { ProductCard } from "../../Components";
 import { useWishlist } from "../../contexts/WishlistContext";
 import { empty_cart_illustration } from "../../assets";
+import { useData } from "../../contexts/DataContext";
+import { useEffect } from "react";
 
 export function Wishlist() {
   const { wishlist } = useWishlist();
+  const { setTitle } = useData();
+
+  useEffect(() => setTitle("Wishlist"), []);
 
   return (
     <div className="wishlist__page__container">

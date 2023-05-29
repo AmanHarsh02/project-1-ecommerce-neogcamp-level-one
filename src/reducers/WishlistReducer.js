@@ -14,6 +14,8 @@ export const wishlistReducer = (state, action) => {
 
       return { ...state, wishlist: newWishlist };
     }
+    case "CLEAR_WISHLIST":
+      return { ...state, wishlist: action.payload };
 
     default:
       return { ...state };
