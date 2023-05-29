@@ -1,6 +1,10 @@
+import { toast } from "react-toastify";
 import "../CartPriceCard/CartPriceCard.css";
+import { useNavigate } from "react-router";
 
 export function CartPriceCard({ cart }) {
+  const navigate = useNavigate();
+
   const deliveryCharges = cart.length >= 1 ? 500 : 0;
 
   const totalPrice = cart.reduce(
@@ -13,6 +17,14 @@ export function CartPriceCard({ cart }) {
       total + (price - discountedPrice) * qty,
     0
   );
+
+  const handlePlaceOrder = () => {
+    if (cart.length >= 1) {
+      navigate("/check-out");
+    } else {
+      toast.warning("Cart is Empty.");
+    }
+  };
 
   return (
     <div className="cart__price__details__container">
@@ -37,7 +49,9 @@ export function CartPriceCard({ cart }) {
       </div>
       <hr></hr>
       <p>You will save ${totalDiscount} on this order</p>
-      <button className="place__order__btn">Place Order</button>
+      <button className="place__order__btn" onClick={handlePlaceOrder}>
+        Place Order
+      </button>
     </div>
   );
 }
