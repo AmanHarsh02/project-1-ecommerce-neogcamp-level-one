@@ -50,7 +50,7 @@ export function CartPriceCard({ cart }) {
       <hr></hr>
       <p>You will save ${totalDiscount} on this order</p>
       <button className="place__order__btn" onClick={handlePlaceOrder}>
-        Place Order
+        Check Out
       </button>
     </div>
   );

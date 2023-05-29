@@ -8,7 +8,7 @@ export const initialState = {
   priceRange: "",
   selectedCategory: [],
   addresses: [],
-  selectedAddress: {},
+  selectedAddress: null,
 };
 
 export const dataReducer = (state, action) => {

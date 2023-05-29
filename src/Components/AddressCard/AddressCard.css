@@ -6,6 +6,7 @@
   min-width: 300px;
   max-width: 350px;
   color: var(--secondary-color);
+  background-color: white;
 }
 
 .address__card__container > p {
