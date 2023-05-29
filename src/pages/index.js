@@ -7,3 +7,4 @@ export { Login } from "./Auth/Login/Login";
 export { Signup } from "./Auth/Signup/Signup";
 export { UserProfile } from "./UserProfile/UserProfile";
 export { Error } from "./Error/Error";
+export { CheckOut } from "./CheckOut/CheckOut";

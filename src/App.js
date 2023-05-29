@@ -13,6 +13,7 @@ import {
   Signup,
   UserProfile,
   Error,
+  CheckOut,
 } from "./pages/index";
 import { Loader, Navbar, ProtectedRoute } from "./Components/index";
 import { useData } from "./contexts/DataContext";
@@ -53,6 +54,15 @@ function App() {
           element={
             <ProtectedRoute>
               <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/check-out"
+          element={
+            <ProtectedRoute>
+              <CheckOut />
             </ProtectedRoute>
           }
         />
