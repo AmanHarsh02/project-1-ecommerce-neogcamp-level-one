@@ -1,0 +1,22 @@
+.checkout__container {
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin: 2rem 1rem;
+  min-height: 90vh;
+}
+
+.checkout__summary__container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .checkout__container {
+    flex-direction: row;
+    justify-content: center;
+    margin: 4rem 2rem 0rem 2rem;
+  }
+}

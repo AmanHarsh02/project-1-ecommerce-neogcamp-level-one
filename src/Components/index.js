@@ -20,3 +20,7 @@ export { AddressCard } from "./AddressCard/AddressCard";
 export { FiltersModal } from "./FiltersModal/FiltersModal";
 export { AddressModal } from "./AddressModal/AddressModal";
 export { Settings } from "./Settings/Settings";
+export { AddressChange } from "./AddressChange/AddressChange";
+export { AddressSelectModal } from "./AddressSelectModal/AddressSelectModal";
+export { OrderChange } from "./OrderChange/OrderChange";
+export { OrderUpdateModal } from "./OrderUpdateModal/OrderUpdateModal";

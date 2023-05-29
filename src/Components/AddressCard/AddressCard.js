@@ -14,7 +14,7 @@ export function AddressCard({ address }) {
         <input
           type="radio"
           name="address__radio"
-          checked={selectedAddress.id === address.id}
+          checked={selectedAddress?.id === address.id}
           onChange={() =>
             dataDispatch({ type: "SET_SELECTED_ADDRESS", payload: address })
           }
