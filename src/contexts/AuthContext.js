@@ -38,6 +38,7 @@ export function AuthProvider({ children }) {
       setLoggedIn(true);
       dataDispatch({ type: "SET_USER_DATA", payload: JSON.parse(user) });
       dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
+      dataDispatch({ type: "SET_SELECTED_ADDRESS", payload: defaultAddress });
     }
   }, []);
 
@@ -88,8 +89,6 @@ export function AuthProvider({ children }) {
         localStorage.setItem("token", data.encodedToken);
         localStorage.setItem("user", JSON.stringify(data.createdUser));
         dataDispatch({ type: "SET_USER_DATA", payload: data.createdUser });
-        dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
-        dataDispatch({ type: "SET_SELECTED_ADDRESS", payload: defaultAddress });
         navigate(authState.location);
       }
     } catch (e) {

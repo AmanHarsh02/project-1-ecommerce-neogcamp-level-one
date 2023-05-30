@@ -24,3 +24,4 @@ export { AddressChange } from "./AddressChange/AddressChange";
 export { AddressSelectModal } from "./AddressSelectModal/AddressSelectModal";
 export { OrderChange } from "./OrderChange/OrderChange";
 export { OrderUpdateModal } from "./OrderUpdateModal/OrderUpdateModal";
+export { OrderDetailsCard } from "./OrderDetailsCard/OrderDetailsCard";

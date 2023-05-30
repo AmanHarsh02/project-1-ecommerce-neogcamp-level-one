@@ -1,22 +1,11 @@
 import { toast } from "react-toastify";
 import "../CartPriceCard/CartPriceCard.css";
 import { useNavigate } from "react-router";
+import { useCart } from "../../contexts/CartContext";
 
 export function CartPriceCard({ cart }) {
+  const { deliveryCharges, totalPrice, totalDiscount } = useCart();
   const navigate = useNavigate();
-
-  const deliveryCharges = cart.length >= 1 ? 500 : 0;
-
-  const totalPrice = cart.reduce(
-    (total, { discountedPrice, qty }) => total + discountedPrice * qty,
-    0
-  );
-
-  const totalDiscount = cart.reduce(
-    (total, { price, discountedPrice, qty }) =>
-      total + (price - discountedPrice) * qty,
-    0
-  );
 
   const handlePlaceOrder = () => {
     if (cart.length >= 1) {
@@ -49,7 +38,7 @@ export function CartPriceCard({ cart }) {
       </div>
       <hr></hr>
       <p>You will save ${totalDiscount} on this order</p>
-      <button className="place__order__btn" onClick={handlePlaceOrder}>
+      <button className="check__out__btn" onClick={handlePlaceOrder}>
         Check Out
       </button>
     </div>

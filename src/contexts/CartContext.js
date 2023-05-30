@@ -84,6 +84,19 @@ export function CartProvider({ children }) {
     }
   };
 
+  const deliveryCharges = cartState.cart.length >= 1 ? 50 : 0;
+
+  const totalPrice = cartState.cart.reduce(
+    (total, { discountedPrice, qty }) => total + discountedPrice * qty,
+    0
+  );
+
+  const totalDiscount = cartState.cart.reduce(
+    (total, { price, discountedPrice, qty }) =>
+      total + (price - discountedPrice) * qty,
+    0
+  );
+
   return (
     <CartContext.Provider
       value={{
@@ -94,6 +107,9 @@ export function CartProvider({ children }) {
         handleIncreaseOrDecrease,
         isCartLoading,
         setIsCartLoading,
+        deliveryCharges,
+        totalPrice,
+        totalDiscount,
       }}
     >
       {children}

@@ -8,10 +8,6 @@ export function Carousel() {
   const [image, setImage] = useState(0);
   const [banner, setBanner] = useState(banner_0);
 
-  setTimeout(() => {
-    nextImg();
-  }, 4000);
-
   const banners = ["1", "2", "3"];
 
   const getSourceImg = () => {
