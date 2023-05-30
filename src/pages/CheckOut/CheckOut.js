@@ -1,8 +1,8 @@
 import "../CheckOut/CheckOut.css";
 import {
   AddressChange,
-  CartPriceCard,
   OrderChange,
+  OrderDetailsCard,
 } from "../../Components/index";
 import { useCart } from "../../contexts/CartContext";
 
@@ -16,8 +16,8 @@ export function CheckOut() {
         <OrderChange />
       </div>
 
-      <div>
-        <CartPriceCard cart={cart} />
+      <div className="checkout__details__container">
+        <OrderDetailsCard />
       </div>
     </div>
   );

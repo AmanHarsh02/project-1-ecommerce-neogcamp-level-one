@@ -21,6 +21,12 @@
 }
 
 .empty__wishlist__img {
-  width: 50%;
+  width: 80%;
   margin: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .empty__wishlist__img {
+    width: 50%;
+  }
 }
