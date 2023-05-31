@@ -23,7 +23,7 @@ export function IndividualProductCard() {
   const { loggedIn } = useAuth();
   const navigate = useNavigate();
 
-  const selectedProduct = products.find(({ _id }) => _id === productId);
+  let selectedProduct = products.find(({ _id }) => _id === productId);
 
   const {
     _id,

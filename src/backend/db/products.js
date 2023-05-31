@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: uuid(),
+    _id: "1",
     productName: "Canon EOS R6",
     productDescription: "Mirrorless Full-Frame Camera",
     productImage:
@@ -22,7 +22,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "2",
     productName: "Sony FE 16-35mm f/2.8 GM Lens",
     productDescription: "Wide-Angle Zoom Lens for Sony E-mount Cameras",
     productImage:
@@ -37,7 +37,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "3",
     productName: "Manfrotto MT055CXPRO4 Carbon Fiber Tripod",
     productDescription: "Professional Tripod with Carbon Fiber Legs",
     productImage:
@@ -52,7 +52,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "4",
     productName: "GoPro HERO 9 Black",
     productDescription:
       "Waterproof Sports Camera with Front LCD Screen & Rear Touch Screen,5K Ultra HD Video,20MP Photos,1080p Live Streaming, Stabilization-Black",
@@ -68,7 +68,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "5",
     productName: "Nikon D850",
     productDescription:
       "A powerful DSLR camera that features a high-resolution sensor and fast autofocus.",
@@ -84,7 +84,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "6",
     productName: "Canon EF 70-200mm f/2.8L IS III USM Lens",
     productDescription: "Telephoto Zoom Lens for Canon DSLR Cameras",
     productImage: "https://m.media-amazon.com/images/I/61PDQet-AzL._SX522_.jpg",
@@ -98,7 +98,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "7",
     productName: "Profoto A1X AirTTL-N Studio Light for Nikon",
     productDescription: "Portable Studio Flash for Nikon Cameras",
     productImage: "https://m.media-amazon.com/images/I/81Myv5AcSeL._SX522_.jpg",
@@ -112,7 +112,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "8",
     productName: "Lowepro ProTactic BP 450 AW II Camera Backpack",
     productDescription: "Camera Backpack with Customizable Interior",
     productImage:
@@ -127,7 +127,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "9",
     productName: "Sony a7 III",
     productDescription: "Full-Frame Mirrorless Camera",
     productImage: "https://m.media-amazon.com/images/I/91rQ3XfEYzL._SX522_.jpg",
@@ -141,7 +141,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "10",
     productName: "Godox SL-60W LED Video Light",
     productDescription:
       "A powerful LED light designed for video and photography, featuring adjustable color temperature, wireless remote control, and quiet fan cooling.",
@@ -156,7 +156,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "11",
     productName: "Canon EF 50mm f/1.4 USM Standard Lens",
     productDescription:
       "A fast and sharp lens that is ideal for low-light photography and portraits.",
@@ -171,7 +171,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "12",
     productName: "SanDisk 128GB Extreme Pro SDXC UHS-I Memory Card",
     productDescription:
       "The SanDisk Extreme Pro SDXC UHS-I Memory Card is a high-speed card that is perfect for recording 4K video and taking high-resolution photos. It features a read speed of up to 170MB/s and a write speed of up to 90MB/s.",
@@ -186,7 +186,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "13",
     productName: "Vanguard BACKPACK",
     productDescription: "Camera Backpack with Customizable Interior",
     productImage: "https://m.media-amazon.com/images/I/71yUghBd0eL._SX522_.jpg",
@@ -200,7 +200,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "14",
     productName: "Sigma 24-70mm f/2.8 DG OS HSM Art Lens",
     productDescription:
       "A versatile and high-quality zoom lens that delivers sharp and detailed images.",
@@ -215,7 +215,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "15",
     productName: "Rode USB Videomic Pro+",
     productDescription:
       "The Rode USB Videomic Pro+ Compact Directional On-Camera Shotgun Condenser Microphone is a high-quality microphone that is perfect for recording audio for video.",
@@ -230,7 +230,7 @@ export const products = [
     trending: true,
   },
   {
-    _id: uuid(),
+    _id: "16",
     productName: "Joby GorillaPod SLR-Zoom Tripod",
     productDescription:
       "The Joby GorillaPod SLR-Zoom Tripod is a flexible and versatile tripod that is perfect for holding your camera steady. It features three articulating legs that can be wrapped around objects, and a ball head that allows you to quickly and easily adjust the angle of your camera.",
@@ -245,7 +245,7 @@ export const products = [
     trending: false,
   },
   {
-    _id: uuid(),
+    _id: "17",
     productName: "LensPen Lens Cleaning Pen",
     productDescription:
       "The LensPen Lens Cleaning Pen is a small and portable tool that is perfect for cleaning your lenses. It features a soft brush that removes dust and dirt, and a solvent-free cleaning fluid that removes fingerprints and smudges.",
