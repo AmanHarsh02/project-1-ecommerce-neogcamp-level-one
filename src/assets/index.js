@@ -7,6 +7,7 @@ import brand_logo_3 from "./trending_brand_logo_3.svg";
 import brand_logo_4 from "./trending_brand_logo_4.svg";
 import brand_logo_5 from "./trending_brand_logo_5.svg";
 import empty_cart_illustration from "./empty_cart_illustration.svg";
+import page_not_found_illustration from "./page_not_found_illustration.svg";
 
 export {
   banner_0,
@@ -18,4 +19,5 @@ export {
   brand_logo_4,
   brand_logo_5,
   empty_cart_illustration,
+  page_not_found_illustration,
 };

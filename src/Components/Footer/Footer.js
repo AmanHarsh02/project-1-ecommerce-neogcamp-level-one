@@ -8,7 +8,7 @@ export function Footer() {
 
   const handleClick = (categoryName) => {
     document.documentElement.scrollTop = 0;
-    dataDispatch({ type: "CATEGORIES", payload: categoryName });
+    dataDispatch({ type: "SET_SINGLE_CATEGORY", payload: categoryName });
   };
 
   return (

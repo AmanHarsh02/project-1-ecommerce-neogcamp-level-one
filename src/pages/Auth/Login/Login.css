@@ -6,7 +6,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 90vh;
 }
 
@@ -16,7 +15,7 @@
   justify-content: space-evenly;
   box-shadow: 0px 0px 40px lightgray;
   padding: 1rem 4rem;
-  height: 60%;
+  min-height: 60vh;
   width: max-content;
   border-radius: 0.4rem;
 }

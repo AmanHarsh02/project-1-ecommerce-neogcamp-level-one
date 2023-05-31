@@ -41,6 +41,12 @@ export const dataReducer = (state, action) => {
 
       return { ...state, selectedCategory: newCategory };
     }
+    case "SET_SINGLE_CATEGORY": {
+      const selectedCategory = action.payload;
+      const newCategory = [selectedCategory];
+
+      return { ...state, selectedCategory: newCategory };
+    }
     case "RATING":
       return { ...state, ratingValue: action.payload };
     case "SORT_BY_PRICE":

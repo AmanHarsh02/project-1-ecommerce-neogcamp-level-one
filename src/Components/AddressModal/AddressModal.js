@@ -2,10 +2,10 @@ import { Icon } from "@iconify/react";
 import "../AddressModal/AddressModal.css";
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
+import { toast } from "react-toastify";
 
 export function AddressModal({ setShowAddressModal, mode, previousAddress }) {
   const { addresses, dataDispatch } = useData();
-
   const [address, setAddress] = useState({
     name: "",
     houseNo: "",
@@ -15,6 +15,18 @@ export function AddressModal({ setShowAddressModal, mode, previousAddress }) {
     zip: "",
     phoneNo: "",
   });
+  const dummyAddress = {
+    id: addresses.length + 1,
+    name: "Aman Harsh",
+    houseNo: "Silver Springs Layout, Brookefield",
+    city: "Bangalore",
+    state: "Karnataka",
+    country: "India",
+    zip: "342001",
+    phoneNo: "909090909090",
+  };
+
+  console.log(dummyAddress);
 
   useEffect(() => {
     if (mode === "add") {
@@ -24,6 +36,25 @@ export function AddressModal({ setShowAddressModal, mode, previousAddress }) {
       setAddress({ ...previousAddress });
     }
   }, []);
+
+  const handleAddressAddOrUpdate = () => {
+    if (
+      address.name.trim().length === 0 ||
+      address.houseNo.trim().length === 0 ||
+      address.city.trim().length === 0 ||
+      address.state.trim().length === 0 ||
+      address.country.trim().length === 0 ||
+      address.zip.trim().length === 0 ||
+      address.phoneNo.trim().length === 0
+    ) {
+      toast.error("Input fields cannot be empty!");
+    } else {
+      mode === "add"
+        ? dataDispatch({ type: "ADD_ADDRESS", payload: address })
+        : dataDispatch({ type: "UPDATE_ADDRESS", payload: address });
+      setShowAddressModal(false);
+    }
+  };
 
   return (
     <div>
@@ -121,17 +152,21 @@ export function AddressModal({ setShowAddressModal, mode, previousAddress }) {
               />
             </fieldset>
 
-            <button
-              className="add__address__btn"
-              onClick={() => {
-                mode === "add"
-                  ? dataDispatch({ type: "ADD_ADDRESS", payload: address })
-                  : dataDispatch({ type: "UPDATE_ADDRESS", payload: address });
-                setShowAddressModal(false);
-              }}
-            >
-              {mode === "add" ? "Add Address" : "Update Address"}
-            </button>
+            <div className="address__btn__container">
+              <button
+                className="add__address__btn"
+                onClick={handleAddressAddOrUpdate}
+              >
+                {mode === "add" ? "Add Address" : "Update Address"}
+              </button>
+
+              <button
+                className="dummy__address__btn"
+                onClick={() => setAddress(dummyAddress)}
+              >
+                Dummy Address
+              </button>
+            </div>
           </div>
         </div>
       </section>

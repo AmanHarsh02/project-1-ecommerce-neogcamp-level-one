@@ -2,11 +2,27 @@ import { toast } from "react-toastify";
 import { useCart } from "../../contexts/CartContext";
 import { useData } from "../../contexts/DataContext";
 import "../OrderDetailsCard/OrderDetailsCard.css";
+import { useNavigate } from "react-router";
 
 export function OrderDetailsCard() {
-  const { cart, deliveryCharges, totalPrice, totalDiscount } = useCart();
-  const { selectedAddress, addresses } = useData();
+  const navigate = useNavigate();
+  const { cart, deliveryCharges, totalPrice, totalDiscount, cartDispatch } =
+    useCart();
+  const { selectedAddress, setIsLoading } = useData();
   const { name, houseNo, city, state, country, zip } = selectedAddress ?? {};
+
+  const handlePlaceOrder = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      cartDispatch({ type: "CLEAR_CART", payload: [] });
+      toast.success("Order Placed Successfully!");
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+        document.documentElement.scrollTop = 0;
+      }, 500);
+    }, 1000);
+  };
 
   return (
     <div className="order__details__card__container">
@@ -56,7 +72,9 @@ export function OrderDetailsCard() {
           )}
         </div>
       </div>
-      <button className="place__order__btn">Place Order</button>
+      <button className="place__order__btn" onClick={handlePlaceOrder}>
+        Place Order
+      </button>
     </div>
   );
 }
