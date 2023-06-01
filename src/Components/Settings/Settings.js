@@ -4,6 +4,7 @@ import { useCart } from "../../contexts/CartContext";
 import { useWishlist } from "../../contexts/WishlistContext";
 import "../Settings/Settings.css";
 import { useData } from "../../contexts/DataContext";
+import { toast } from "react-toastify";
 
 export function Settings() {
   const { setLoggedIn, authDispatch } = useAuth();
@@ -13,6 +14,7 @@ export function Settings() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    setIsLoading(true);
     setLoggedIn(false);
     cartDispatch({ type: "CLEAR_CART", payload: [] });
     wishlistDispatch({ type: "CLEAR_WISHLIST", payload: [] });
@@ -21,9 +23,11 @@ export function Settings() {
     authDispatch({
       type: "LOG_OUT",
     });
-    setIsLoading(true);
+    toast.success("Logged Out Successfully!");
     setTimeout(() => {
-      setIsLoading(false);
+      navigate("/");
+      window.location.reload();
+      document.documentElement.scrollTop = 0;
     }, 500);
     navigate("/");
   };

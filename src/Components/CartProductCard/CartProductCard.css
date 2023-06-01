@@ -18,7 +18,7 @@
   width: 100%;
   max-height: 300px;
   object-fit: contain;
-  border-radius: 0.4rem 0rem 0rem 0.4rem;
+  border-radius: 0.4rem 0.4rem 0rem 0rem;
 }
 
 .cart__product__details__container {
@@ -97,5 +97,6 @@
     min-width: 300px;
     height: 300px;
     object-fit: cover;
+    border-radius: 0.4rem 0rem 0rem 0.4rem;
   }
 }
