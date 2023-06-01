@@ -30,4 +30,4 @@
 
 ## **Demo -**
 
-![ezgif com-gif-maker]()
+![loom video](https://www.loom.com/share/308653c51182412a94b4e0c6d9a6fbc6)
