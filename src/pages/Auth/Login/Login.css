@@ -33,6 +33,18 @@ a {
   border: 1px solid gray;
 }
 
+.input__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.show__pswd__icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
 .login__card button {
   cursor: pointer;
   border: none;
