@@ -30,4 +30,4 @@
 
 ## **Demo -**
 
-![loom video](https://www.loom.com/share/308653c51182412a94b4e0c6d9a6fbc6)
+![site overview](https://github.com/AmanHarsh02/project-1-ecommerce-neogcamp-level-one/blob/master/src/assets/SnapShop-Overview.gif)
