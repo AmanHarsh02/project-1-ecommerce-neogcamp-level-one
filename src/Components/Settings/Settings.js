@@ -25,9 +25,8 @@ export function Settings() {
     });
     toast.success("Logged Out Successfully!");
     setTimeout(() => {
-      navigate("/");
-      window.location.reload();
       document.documentElement.scrollTop = 0;
+      setIsLoading(false);
     }, 500);
     navigate("/");
   };

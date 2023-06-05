@@ -4,6 +4,8 @@ export const initialState = {
 
 export const wishlistReducer = (state, action) => {
   switch (action.type) {
+    case "SET_WISHLIST":
+      return { ...state, wishlist: action.payload };
     case "ADD_TO_WISHLIST": {
       const newWishlist = [...action.payload];
 

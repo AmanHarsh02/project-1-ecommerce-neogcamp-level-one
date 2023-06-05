@@ -46,7 +46,9 @@ export function Navbar() {
                 color="#5348c7"
                 height={24}
               />
-              <div className="count__badge">{wishlist.length}</div>
+              {wishlist.length > 0 && (
+                <div className="count__badge">{wishlist.length}</div>
+              )}
             </div>
             <p>Wishlist</p>
           </NavLink>
@@ -58,7 +60,9 @@ export function Navbar() {
                 color="#5348c7"
                 height={24}
               />
-              <div className="count__badge">{cart.length}</div>
+              {cart.length > 0 && (
+                <div className="count__badge">{cart.length}</div>
+              )}
             </div>
             <p>Cart</p>
           </NavLink>

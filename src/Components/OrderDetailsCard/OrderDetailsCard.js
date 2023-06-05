@@ -6,19 +6,25 @@ import { useNavigate } from "react-router";
 
 export function OrderDetailsCard() {
   const navigate = useNavigate();
-  const { cart, deliveryCharges, totalPrice, totalDiscount, cartDispatch } =
-    useCart();
+  const {
+    cart,
+    deliveryCharges,
+    totalPrice,
+    totalDiscount,
+    cartDispatch,
+    handleClearCart,
+  } = useCart();
   const { selectedAddress, setIsLoading } = useData();
   const { name, houseNo, city, state, country, zip } = selectedAddress ?? {};
 
   const handlePlaceOrder = () => {
     setIsLoading(true);
     setTimeout(() => {
-      cartDispatch({ type: "CLEAR_CART", payload: [] });
+      handleClearCart();
       toast.success("Order Placed Successfully!");
       setTimeout(() => {
         navigate("/");
-        window.location.reload();
+        setIsLoading(false);
         document.documentElement.scrollTop = 0;
       }, 500);
     }, 1000);

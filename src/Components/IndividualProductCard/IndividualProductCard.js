@@ -7,6 +7,7 @@ import { useWishlist } from "../../contexts/WishlistContext";
 import { BtnLoader } from "../BtnLoader/BtnLoader";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export function IndividualProductCard() {
   const { productId } = useParams();
@@ -48,27 +49,34 @@ export function IndividualProductCard() {
   }, [isCartLoading]);
 
   const handleCartClick = () => {
-    if (!loggedIn) {
-      setIsBtnLoading(false);
-    } else {
+    if (loggedIn) {
       setIsBtnLoading(true);
       setIsCartLoading(true);
-    }
-    if (!presentInCart) {
-      handleAddToCart("ADD_TO_CART", selectedProduct);
+
+      if (!presentInCart) {
+        handleAddToCart("ADD_TO_CART", selectedProduct);
+      } else {
+        navigate("/cart");
+      }
     } else {
-      navigate("/cart");
+      setIsBtnLoading(false);
+      setIsCartLoading(false);
+      toast.error("Please login first");
     }
   };
 
   const handleWishlistClick = () => {
     if (loggedIn) {
       setIsWishlistLoading(true);
-    }
-    if (!presentInWishlist) {
-      handleAddToWishlist("ADD_TO_WISHLIST", selectedProduct);
+
+      if (!presentInWishlist) {
+        handleAddToWishlist("ADD_TO_WISHLIST", selectedProduct);
+      } else {
+        handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", selectedProduct);
+      }
     } else {
-      handleRemoveFromWishlist("REMOVE_FROM_WISHLIST", selectedProduct);
+      setIsWishlistLoading(false);
+      toast.error("Please login first");
     }
   };
 
