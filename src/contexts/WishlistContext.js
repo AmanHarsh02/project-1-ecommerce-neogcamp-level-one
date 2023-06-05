@@ -1,6 +1,4 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { useData } from "./DataContext";
-import { useAuth } from "./AuthContext";
 import { initialState, wishlistReducer } from "../reducers/WishlistReducer";
 import { toast } from "react-toastify";
 
@@ -11,7 +9,6 @@ export function WishlistProvider({ children }) {
     wishlistReducer,
     initialState
   );
-  const { loggedIn } = useAuth();
   const [isWishlistLoading, setIsWishlistLoading] = useState(false);
   const token = localStorage.getItem("token");
 
@@ -23,28 +20,23 @@ export function WishlistProvider({ children }) {
   };
 
   const handleAddToWishlist = async (actionType, product) => {
-    if (loggedIn) {
-      try {
-        const response = await fetch("/api/user/wishlist", {
-          method: "POST",
-          headers: { authorization: token },
-          body: JSON.stringify({ product }),
-        });
+    try {
+      const response = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: { authorization: token },
+        body: JSON.stringify({ product }),
+      });
 
-        const { wishlist } = await response.json();
+      const { wishlist } = await response.json();
 
-        const payload = wishlist;
+      const payload = wishlist;
 
-        toast.success(`${product.productName} Added To Wishlist`);
-        callWishlistDispatch(actionType, payload);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setIsWishlistLoading(false);
-      }
-    } else {
+      toast.success(`${product.productName} Added To Wishlist`);
+      callWishlistDispatch(actionType, payload);
+    } catch (e) {
+      console.error(e);
+    } finally {
       setIsWishlistLoading(false);
-      toast.error("Please login first");
     }
   };
 

@@ -9,6 +9,8 @@ import { authInitialState, authReducer } from "../reducers/AuthReducer";
 import { useData } from "./DataContext";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { useCart } from "./CartContext";
+import { useWishlist } from "./WishlistContext";
 
 const AuthContext = createContext();
 let method = "";
@@ -29,6 +31,8 @@ export function AuthProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const { dataDispatch, setIsLoading } = useData();
+  const { cartDispatch } = useCart();
+  const { wishlistDispatch } = useWishlist();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const user = localStorage.getItem("user");
@@ -66,6 +70,11 @@ export function AuthProvider({ children }) {
         localStorage.setItem("token", data.encodedToken);
         localStorage.setItem("user", JSON.stringify(data.foundUser));
         dataDispatch({ type: "SET_USER_DATA", payload: data.foundUser });
+        cartDispatch({ type: "SET_CART", payload: data.foundUser.cart });
+        wishlistDispatch({
+          type: "SET_WISHLIST",
+          payload: data.foundUser.wishlist,
+        });
         dataDispatch({ type: "SET_DEFAULT_ADDRESS", payload: defaultAddress });
         dataDispatch({ type: "SET_SELECTED_ADDRESS", payload: defaultAddress });
         navigate(authState.location);

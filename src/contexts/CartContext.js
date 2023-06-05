@@ -1,13 +1,11 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { cartReducer, initialState } from "../reducers/CartReducer";
-import { useAuth } from "./AuthContext";
 import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
-  const { loggedIn } = useAuth();
   const [isCartLoading, setIsCartLoading] = useState(false);
   const token = localStorage.getItem("token");
 
@@ -19,32 +17,31 @@ export function CartProvider({ children }) {
   };
 
   const handleAddToCart = async (actionType, product) => {
-    if (loggedIn) {
-      try {
-        const response = await fetch("/api/user/cart", {
-          method: "POST",
-          headers: { authorization: token },
-          body: JSON.stringify({ product }),
-        });
+    try {
+      const response = await fetch("/api/user/cart", {
+        method: "POST",
+        headers: { authorization: token },
+        body: JSON.stringify({ product }),
+      });
 
-        const { cart } = await response.json();
+      const { cart } = await response.json();
 
-        const payload = cart;
+      const payload = cart;
 
-        toast.success(`${product.productName} Added To Cart`);
-        callCartDispatch(actionType, payload);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setIsCartLoading(false);
-      }
-    } else {
+      toast.success(`${product.productName} Added To Cart`);
+      callCartDispatch(actionType, payload);
+    } catch (e) {
+      console.error(e);
+    } finally {
       setIsCartLoading(false);
-      toast.error("Please login first");
     }
   };
 
-  const handleRemoveFromCart = async (actionType, product) => {
+  const handleRemoveFromCart = async (
+    actionType,
+    product,
+    showToast = true
+  ) => {
     try {
       const response = await fetch(`/api/user/cart/${product._id}`, {
         method: "DELETE",
@@ -55,7 +52,7 @@ export function CartProvider({ children }) {
 
       const payload = cart;
 
-      toast.warn(`${product.productName} Removed From Cart`);
+      showToast && toast.warn(`${product.productName} Removed From Cart`);
       callCartDispatch(actionType, payload);
     } catch (e) {
       console.error(e);
@@ -84,6 +81,14 @@ export function CartProvider({ children }) {
     }
   };
 
+  const handleClearCart = () => {
+    cartDispatch({ type: "CLEAR_CART", payload: [] });
+
+    cartState.cart.map((product) => {
+      handleRemoveFromCart("REMOVE_FROM_CART", product, false);
+    });
+  };
+
   const deliveryCharges = cartState.cart.length >= 1 ? 50 : 0;
 
   const totalPrice = cartState.cart.reduce(
@@ -105,6 +110,7 @@ export function CartProvider({ children }) {
         handleAddToCart,
         handleRemoveFromCart,
         handleIncreaseOrDecrease,
+        handleClearCart,
         isCartLoading,
         setIsCartLoading,
         deliveryCharges,
