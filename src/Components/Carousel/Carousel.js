@@ -61,7 +61,21 @@ export function Carousel() {
     <div className="carousal__container">
       <div className="img__container">
         <Link to="/products" onClick={handleClick}>
-          <img src={banner} alt="banner" />
+          <img
+            src={banner}
+            alt="banner"
+            style={{ display: banner !== banner_0 ? "none" : "" }}
+          />
+          <img
+            src={banner_1}
+            alt="banner"
+            style={{ display: banner !== banner_1 ? "none" : "" }}
+          />
+          <img
+            src={banner_2}
+            alt="banner"
+            style={{ display: banner !== banner_2 ? "none" : "" }}
+          />
         </Link>
         <div className="carousal__navigate__btn right" onClick={nextImg}>
           <Icon
@@ -79,6 +93,7 @@ export function Carousel() {
           />
         </div>
       </div>
+
       <div className="carousal__navigation_container">
         {banners.map((_, i) => {
           return (
